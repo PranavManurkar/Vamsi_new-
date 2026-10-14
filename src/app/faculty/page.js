@@ -1,111 +1,8 @@
 import Image from "next/image";
-import { ArrowUpRight, Briefcase, GraduationCap, Mail, Phone } from "lucide-react";
+import { ArrowUpRight, GraduationCap, Mail, Phone } from "lucide-react";
+import AcademicTabs from "@/components/site/AcademicTabs";
+import PageHeader from "@/components/site/PageHeader";
 import { buttonClasses } from "@/lib/ui";
-
-const workExperience = [
-  {
-    id: 1,
-    title: "Assistant Professor",
-    org: "IIT Indore",
-    logo: "/iiti-logo.jpg",
-    dept: "Department of Metallurgical Engineering and Materials Science (MEMS)",
-    period: "Mar 2023 – Present",
-    type: "academic",
-    current: true,
-    description:
-      "Leading the VAMSI Research Group, focusing on computational design of advanced alloys, multiscale modelling, and materials informatics.",
-  },
-  {
-    id: 2,
-    title: "Consultant",
-    org: "TCS Research, Tata Consultancy Services",
-    logo: "/logos/tcs.jpeg",
-    dept: "ICME Group",
-    period: "Apr 2022 – Mar 2023",
-    type: "industry",
-    current: false,
-    description:
-      "Applied Integrated Computational Materials Engineering (ICME) frameworks to industrial materials challenges. Bridged academic research and industrial application in computational metallurgy.",
-  },
-  {
-    id: 3,
-    title: "Postdoctoral Researcher",
-    org: "University of California Santa Barbara",
-    logo: "/logos/pollock.gif",
-    dept: "Pollock Group, Materials Department",
-    period: "Dec 2018 – Mar 2022",
-    type: "research",
-    current: false,
-    description:
-      "Conducted advanced research on superalloys, Multi-Principal Element Alloys (MPEAs) and Refractory High-Entropy Alloys (HEAs). Investigated deformation pathways, thermodynamics, and phase stability of high-temperature structural materials.",
-  },
-  {
-    id: 4,
-    title: "Research Assistant",
-    org: "Indian Institute of Science, Bangalore",
-    logo: "/logos/pspm.jpeg",
-    dept: "DMMG & PSPM Groups",
-    period: "2017 – 2018",
-    type: "research",
-    current: false,
-    description:
-      "Contributed to research at the Deformation Mechanisms and Modelling Group (DMMG) and Processing, Structure and Properties of Materials Group (PSPM), advancing understanding of deformation in high-temperature alloys.",
-  },
-  {
-    id: 5,
-    title: "Researcher",
-    org: "TATA Steel",
-    logo: "/logos/tata.jpeg",
-    dept: "Materials Modelling and Product Development Group, TATA Steel R&D",
-    period: "2009 – 2010",
-    type: "industry",
-    current: false,
-    description:
-      "Worked on computational materials modelling and product development for steel applications at Jamshedpur, gaining foundational industry experience in materials research.",
-  },
-  {
-    id: 6,
-    title: "Senior Engineer",
-    org: "ISPAT Industries Ltd.",
-    logo: "/logos/ispat.png",
-    dept: "Raw Materials Handling Department",
-    period: "2006 – 2007",
-    type: "industry",
-    current: false,
-    description:
-      "Managed raw materials handling operations at Dolvi, Maharashtra. Gained practical industrial experience in steel manufacturing processes.",
-  },
-];
-
-const education = [
-  {
-    degree: "Ph.D. in Materials Engineering",
-    institution: "Indian Institute of Science, Bangalore",
-    logo: "/logos/pspm.jpeg",
-    year: "2018",
-    description: "Doctoral research on superalloys and high-temperature structural materials, focusing on deformation pathways and alloy design principles.",
-  },
-  {
-    degree: "M.E. in Materials Engineering",
-    institution: "Indian Institute of Science, Bangalore",
-    logo: "/logos/pspm.jpeg",
-    year: "2009",
-    description: "Advanced coursework and research in materials engineering, laying the foundation for computational materials science.",
-  },
-  {
-    degree: "B.E. in Metallurgical Engineering",
-    institution: "Andhra University College of Engineering",
-    logo: "/logos/andhrauni.jpg",
-    year: "2006",
-    description: "Undergraduate studies in metallurgical engineering, building core competencies in materials science and engineering.",
-  },
-];
-
-const typeLabels = {
-  academic: "Academia",
-  research: "Research",
-  industry: "Industry",
-};
 
 function IconLinkedIn() {
   return (
@@ -169,36 +66,16 @@ const externalProfiles = [
   { label: "IIT Indore – MEMS Dept.", href: "http://mems.iiti.ac.in/", icon: <GraduationCap className="size-4" /> },
 ];
 
-function SectionTitle({ icon: Icon, children }) {
-  return (
-    <div className="flex items-center gap-3">
-      <div className="flex size-11 items-center justify-center rounded-lg bg-secondary text-terracotta">
-        <Icon className="size-5" aria-hidden="true" />
-      </div>
-      <h2 className="text-2xl font-semibold text-primary">{children}</h2>
-    </div>
-  );
-}
-
-function TimelineRow({ period, logo, children }) {
-  return (
-    <li className="grid gap-4 border-b border-border py-5 first:pt-0 last:border-0 last:pb-0 md:grid-cols-[8rem_1fr]">
-      <p className="font-semibold text-terracotta">{period}</p>
-      <div className="flex gap-4">
-        {/* redesign: logo is decorative — the organisation name follows as text. */}
-        <div className="relative size-11 shrink-0 overflow-hidden rounded-lg border border-border bg-card">
-          <Image src={logo} alt="" fill sizes="44px" className="object-contain p-1" />
-        </div>
-        <div className="min-w-0">{children}</div>
-      </div>
-    </li>
-  );
-}
-
 export default function FacultyPage() {
   return (
-    <div className="px-5 pb-16 pt-32 md:px-8 md:pb-24 md:pt-40">
-      {/* redesign-data: design PageHeader eyebrow "About", title "Professor & principal investigator" (pages.tsx L152); repo: none. Omitted. */}
+    <>
+      {/* Page header text from the design (pages.tsx L152). */}
+      <PageHeader
+        eyebrow="About"
+        title="Professor & principal investigator"
+        intro="Academic profile, research interests, appointments, and selected distinctions."
+      />
+    <div className="px-5 py-16 md:px-8 md:py-24">
       <div className="mx-auto max-w-7xl">
         {/* Profile header — design About split card (pages.tsx L155) */}
         <div className="grid overflow-hidden rounded-2xl border border-border bg-card lg:grid-cols-[0.65fr_1.35fr]">
@@ -215,7 +92,7 @@ export default function FacultyPage() {
           </div>
           <div className="p-7 md:p-10">
             <span className={pill}>Principal Investigator</span>
-            <h1 className="mt-3 text-3xl font-semibold text-primary md:text-4xl">Dr. K. V. Vamsi</h1>
+            <h2 className="mt-3 text-3xl font-semibold text-primary md:text-4xl">Dr. K. V. Vamsi</h2>
             <p className="mt-2 text-muted-foreground">
               Assistant Professor · Department of Metallurgical Engineering and Materials Science
             </p>
@@ -281,40 +158,8 @@ export default function FacultyPage() {
               </div>
             </section>
 
-            <section className={sectionCard}>
-              <SectionTitle icon={Briefcase}>Work Experience</SectionTitle>
-              <ol className="mt-6">
-                {workExperience.map((item) => (
-                  <TimelineRow key={item.id} period={item.period} logo={item.logo}>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-semibold text-primary">{item.title}</h3>
-                      {item.current && (
-                        <span className="rounded-full bg-terracotta px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
-                          Current
-                        </span>
-                      )}
-                      <span className={pill}>{typeLabels[item.type]}</span>
-                    </div>
-                    <p className="mt-1 text-muted-foreground">{item.org}</p>
-                    <p className="text-sm text-muted-foreground">{item.dept}</p>
-                    <p className="mt-1 text-sm leading-6 text-muted-foreground">{item.description}</p>
-                  </TimelineRow>
-                ))}
-              </ol>
-            </section>
-
-            <section className={sectionCard}>
-              <SectionTitle icon={GraduationCap}>Education</SectionTitle>
-              <ol className="mt-6">
-                {education.map((item) => (
-                  <TimelineRow key={item.degree} period={item.year} logo={item.logo}>
-                    <h3 className="font-semibold text-primary">{item.degree}</h3>
-                    <p className="mt-1 text-muted-foreground">{item.institution}</p>
-                    <p className="mt-1 text-sm leading-6 text-muted-foreground">{item.description}</p>
-                  </TimelineRow>
-                ))}
-              </ol>
-            </section>
+            {/* Work experience + education replaced by the design AboutPage tabs and content (pages.tsx L165-172). */}
+            <AcademicTabs />
           </div>
 
           <div className="space-y-6">
@@ -372,8 +217,7 @@ export default function FacultyPage() {
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
                 We are actively looking for PhD students and postdoctoral researchers in computational materials science.
               </p>
-              {/* redesign-data: href "#contact" has no target on this page (repo behaviour). Kept repo per D1. */}
-              <a href="#contact" className={buttonClasses({ variant: "terracotta", className: "mt-4 w-full" })}>
+                            <a href="/contact" className={buttonClasses({ variant: "terracotta", className: "mt-4 w-full" })}>
                 Get in Touch
               </a>
             </aside>
@@ -381,5 +225,6 @@ export default function FacultyPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
