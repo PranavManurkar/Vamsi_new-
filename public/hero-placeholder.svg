@@ -1,0 +1,22 @@
+<svg width="1200" height="1500" viewBox="0 0 1200 1500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#DDD3C3"/>
+      <stop offset="45%" stop-color="#BCA07D"/>
+      <stop offset="100%" stop-color="#8B6F4A"/>
+    </linearGradient>
+    <pattern id="grid" width="90" height="90" patternUnits="userSpaceOnUse">
+      <path d="M 90 0 L 0 0 0 90" fill="none" stroke="#FFFFFF" stroke-opacity="0.24" stroke-width="2"/>
+    </pattern>
+    <radialGradient id="light" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 760) rotate(90) scale(640 500)">
+      <stop stop-color="#FFFFFF" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#bg)"/>
+  <rect width="1200" height="1500" fill="url(#grid)"/>
+  <ellipse cx="600" cy="760" rx="360" ry="520" fill="#A28159" fill-opacity="0.52"/>
+  <ellipse cx="600" cy="720" rx="210" ry="230" fill="#C5AC8A" fill-opacity="0.88"/>
+  <ellipse cx="600" cy="1100" rx="300" ry="260" fill="#6F7E98" fill-opacity="0.8"/>
+  <rect width="1200" height="1500" fill="url(#light)"/>
+</svg>
