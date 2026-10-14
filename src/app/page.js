@@ -3,6 +3,7 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 import { AlloyDesignDiagram, FaultDiagram, LatticeDiagram } from "@/components/site/ScientificDiagrams";
 import { buttonClasses } from "@/lib/ui";
 import { featuredResearch, news, selectedPublications } from "@/lib/homeData";
+import HeroCarousel from "@/components/site/HeroCarousel";
 
 // Home page — ported 1:1 from the design HomePage (pages.tsx L80-146).
 // Link targets mapped to existing routes: /research/<slug> -> /research, /openings -> /join.
@@ -11,12 +12,12 @@ const diagrams = { alloy: AlloyDesignDiagram, lattice: LatticeDiagram, fault: Fa
 export default function Home() {
   return (
     <>
-      <section className="dot-field px-5 pb-20 pt-32 md:px-8 md:pb-28 md:pt-40">
+      <section className="dot-field px-5 pb-20 pt-24 md:px-8 md:pb-28 md:pt-28">
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-terracotta">VAMSI Research Group · IIT Indore</p>
             <h1 className="mt-5 text-4xl font-semibold leading-[1.1] text-primary md:text-6xl lg:text-7xl">
-              Designing alloys, from atoms to applications.
+              Virtual Alloys Modelling, Simulation & Informatics
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
               Computational metallurgy · Advanced structural alloys · Materials informatics
@@ -36,8 +37,9 @@ export default function Home() {
               24 publications · 534 citations · h-index 14 · Metrics reported in the supplied 2026 CV.
             </p>
           </div>
+          {/* Design shows AlloyDesignDiagram here; replaced by the group photo carousel at the same box size. */}
           <div className="overflow-hidden rounded-2xl border border-border bg-card p-3 shadow-xl">
-            <AlloyDesignDiagram />
+            <HeroCarousel />
           </div>
         </div>
       </section>
