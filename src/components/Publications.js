@@ -3,7 +3,7 @@ import PublicationsContent from "@/components/PublicationsContent";
 
 export default function Publications() {
   return (
-    <Suspense fallback={<div className="bg-white px-6 py-16 md:px-10 md:py-20 lg:px-16"><div className="mx-auto h-64 w-full max-w-[1160px]"></div></div>}>
+    <Suspense fallback={<div className="px-5 pb-16 pt-32 md:px-8 md:pt-40"><div className="mx-auto h-64 max-w-7xl" /></div>}>
       <PublicationsContent />
     </Suspense>
   );

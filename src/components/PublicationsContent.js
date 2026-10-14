@@ -1,14 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
-import { Inter } from "next/font/google";
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+import { ExternalLink, Search } from "lucide-react";
+import PageHeader from "@/components/site/PageHeader";
+import PublicationRows from "@/components/site/PublicationRows";
+import { buttonClasses } from "@/lib/ui";
 
 const publications = [
   {
@@ -69,177 +66,96 @@ const publications = [
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: (index) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.42,
-      delay: index * 0.08,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-};
+const TABS = [
+  { id: "publications", label: "Publications" },
+  { id: "proceedings", label: "Conference Proceedings" },
+  { id: "talks", label: "Talks" },
+];
 
-function ExternalLinkIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      className="h-3.5 w-3.5"
-      aria-hidden="true"
-    >
-      <path d="M14 5h5v5" />
-      <path d="M10 14 19 5" />
-      <path d="M19 13v6H5V5h6" />
-    </svg>
-  );
-}
+const SCHOLAR_URL = "https://scholar.google.com/citations?user=ducGUjAAAAAJ&hl=en";
 
 export default function PublicationsContent() {
   const searchParams = useSearchParams();
-  const [activeTab, setActiveTab] = useState("publications");
-
-  useEffect(() => {
-    const tabParam = searchParams?.get("tab");
-    if (tabParam && ["publications", "proceedings", "talks"].includes(tabParam)) {
-      setActiveTab(tabParam);
-    }
-  }, [searchParams]);
+  // Derived from the URL during render (replaces the old setState-in-effect; same fallback to "publications").
+  const tabParam = searchParams?.get("tab");
+  const activeTab = TABS.some((t) => t.id === tabParam) ? tabParam : "publications";
+  const activeLabel = TABS.find((t) => t.id === activeTab).label;
 
   return (
-    <section
-      id="contributions"
-      className={`${inter.className} bg-white px-6 py-16 md:px-10 md:py-20 lg:px-16`}
-    >
-      <div className="mx-auto w-full max-w-[1160px]">
-        <div>
-          <h2 className="text-4xl font-bold tracking-[-0.02em] text-[#0f172b] md:text-5xl">
-            {activeTab === "publications" && "Publications"}
-            {activeTab === "proceedings" && "Conference Proceedings"}
-            {activeTab === "talks" && "Talks"}
-          </h2>
-          <p className="mt-3 text-base font-medium text-black md:text-lg">
-            {activeTab === "publications" }
-            {activeTab === "proceedings" }
-            {activeTab === "talks" }
-          </p>
-        </div>
+    <>
+      {/* redesign-data: design eyebrow "Publications", title "Academic bibliography" and intro (pages.tsx L256); repo title follows the active tab. Kept repo. */}
+      <PageHeader title={activeLabel} />
 
-        {/* Publications Tab */}
-        {activeTab === "publications" && (
-          <div className="mt-12 space-y-6 md:mt-16 md:space-y-7">
-            {publications.slice(-8).map((item, index) => (
-              <motion.article
-                key={`${item.doi}`}
-                custom={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.22 }}
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.22, ease: "easeOut" }}
-                className="rounded-2xl border border-[#0f172b] bg-white px-5 py-6 shadow-[0_2px_14px_rgba(15,23,43,0.06)] hover:shadow-[0_8px_28px_rgba(15,23,43,0.08)] md:px-6"
+      <section id="contributions" className="px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          {/* redesign-data: design filters by year (All/2024–26/2020–23/Earlier, pages.tsx L257); repo switches by type tab. Kept repo tabs, styled as the design filter buttons. */}
+          <nav aria-label="Contribution type" className="mb-7 flex flex-wrap gap-2">
+            {TABS.map((tab) => (
+              <Link
+                key={tab.id}
+                href={`/publications?tab=${tab.id}`}
+                scroll={false}
+                aria-current={activeTab === tab.id ? "page" : undefined}
+                className={buttonClasses({ variant: activeTab === tab.id ? "default" : "outline" })}
               >
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-[1.1rem] font-semibold leading-snug text-[#0f172b] md:text-[1.25rem]">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-black md:text-[0.95rem]">{item.authors}</p>
-                    <a
-                      href={item.scholarUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center gap-1.5 text-[0.79rem] font-medium text-[#0f172b] transition-colors hover:text-[#1e293b]"
-                    >
-                      <ExternalLinkIcon />
-                      <span>DOI: {item.doi}</span>
-                    </a>
-                  </div>
-                  <motion.a
-                    href={item.scholarUrl}
+                {tab.label}
+              </Link>
+            ))}
+          </nav>
+
+          {activeTab === "publications" && (
+            <>
+              <PublicationRows items={publications.slice(-8)} />
+
+              {publications.length > 8 && (
+                <div className="mt-8 flex justify-center">
+                  <a
+                    href={SCHOLAR_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ y: -1 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="inline-flex h-10 items-center justify-center rounded-xl bg-[#0f172b] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#1e293b] md:min-w-[120px]"
+                    className={buttonClasses({ variant: "outline", size: "lg" })}
                   >
-                    View Paper
-                  </motion.a>
+                    View All Publications
+                    <ExternalLink />
+                  </a>
                 </div>
-              </motion.article>
-            ))}
+              )}
 
-            {publications.length > 8 && (
-              <div className="mt-8 flex justify-center">
+              <div className="mt-12 flex justify-center border-t border-border pt-12">
                 <a
-                  href="https://scholar.google.com/citations?user=ducGUjAAAAAJ&hl=en"
+                  href={SCHOLAR_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-[#0f172b] px-6 py-3 text-base font-semibold text-[#0f172b] transition-colors hover:bg-[#0f172b] hover:text-white"
+                  className={buttonClasses({ size: "lg" })}
                 >
-                  View All Publications
-                  <ExternalLinkIcon />
+                  <Search />
+                  View on Google Scholar
                 </a>
               </div>
-            )}
+            </>
+          )}
 
-            <div className="mt-12 flex justify-center border-t border-[#0f172b]/10 pt-12">
-              <motion.a
-                href="https://scholar.google.com/citations?user=ducGUjAAAAAJ&hl=en"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="inline-flex items-center gap-2 rounded-full bg-[#0f172b] px-8 py-3 text-base font-semibold text-white shadow-[0_4px_12px_rgba(15,23,43,0.2)] transition-all hover:bg-[#1e293b] hover:shadow-[0_8px_20px_rgba(15,23,43,0.3)]"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="h-5 w-5"
-                  aria-hidden="true"
-                >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.35-4.35"></path>
-                </svg>
-                <span>View on Google Scholar</span>
-              </motion.a>
-            </div>
-          </div>
-        )}
-
-        {/* Conference Proceedings Tab */}
-        {activeTab === "proceedings" && (
-          <div className="mt-12">
-            <p className="text-center text-black">
+          {activeTab === "proceedings" && (
+            <p className="rounded-xl bg-secondary p-6 text-center text-muted-foreground">
               Conference proceedings data coming soon. <br />
               <a
-                href="https://scholar.google.com/citations?user=ducGUjAAAAAJ&hl=en"
+                href={SCHOLAR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#0f172b] hover:text-[#1e293b] underline"
+                className="font-medium text-primary underline underline-offset-4 hover:text-terracotta"
               >
                 View full list on Google Scholar
               </a>
             </p>
-          </div>
-        )}
+          )}
 
-        {/* Talks Tab */}
-        {activeTab === "talks" && (
-          <div className="mt-12">
-            <p className="text-center text-black">
+          {activeTab === "talks" && (
+            <p className="rounded-xl bg-secondary p-6 text-center text-muted-foreground">
               Talks data coming soon. Please provide the list.
             </p>
-          </div>
-        )}
-      </div>
-    </section>
+          )}
+        </div>
+      </section>
+    </>
   );
 }
