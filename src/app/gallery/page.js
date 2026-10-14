@@ -1,9 +1,5 @@
-"use client";
-
 import Image from "next/image";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
+import PageHeader from "@/components/site/PageHeader";
 
 const galleryImages = [
   {
@@ -53,57 +49,42 @@ const galleryImages = [
   },
 ];
 
-function GalleryCard({ image, index }) {
+// Touch devices cannot hover, so the overlay and caption stay visible on coarse pointers.
+function GalleryCard({ image }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.4, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ y: -4, scale: 1.02 }}
-      className="group relative overflow-hidden rounded-2xl bg-white shadow-[0_4px_16px_rgba(15,23,43,0.08)] transition-all duration-300 hover:shadow-[0_12px_32px_rgba(15,23,43,0.15)]"
-    >
-        <div className="relative h-64 w-full overflow-hidden bg-[#e2e8f0]">
+    <div className="group relative overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+      <div className="relative h-64 w-full overflow-hidden bg-secondary">
         <Image
           src={image.src}
           alt={image.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0f172b]/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-coarse:opacity-100" />
       </div>
-
-      <div className="absolute inset-0 flex items-end justify-start p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <h3 className="text-lg font-semibold text-white">{image.title}</h3>
-      </div>
-    </motion.div>
+      <h3
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 p-4 text-lg font-semibold text-primary-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-coarse:opacity-100"
+      >
+        {image.title}
+      </h3>
+    </div>
   );
 }
 
 export default function GalleryPage() {
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-black">
-      <Header />
-      <main className="mx-auto w-full max-w-[1240px] px-4 py-12 sm:px-6 md:px-8 lg:px-10">
-        {/* Header Section */}
-        <section className="mb-12">
-          <h1 className="text-4xl font-bold tracking-tight text-[#0f172b] sm:text-5xl">Gallery</h1>
-              {/* <p className="mt-3 max-w-2xl text-base leading-relaxed text-black sm:text-lg">
-                Explore our research group activities, collaborations, and moments from our journey in computational materials science.
-              </p> */}
-        </section>
-
-        {/* Gallery Grid */}
-        <section>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {galleryImages.map((image, index) => (
-              <GalleryCard key={image.id} image={image} index={index} />
-            ))}
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+    <>
+      {/* redesign: no gallery in the design (D1); built from the design card + PageHeader patterns. Zoom eased from 110% to 105%. */}
+      <PageHeader title="Gallery" />
+      <section className="px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {galleryImages.map((image) => (
+            <GalleryCard key={image.id} image={image} />
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

@@ -1,11 +1,8 @@
-import Link from "next/link";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { ArrowUpRight } from "lucide-react";
+import PageHeader from "@/components/site/PageHeader";
 import ResourceCard from "@/components/ResourceCard";
 import Teaching from "@/components/Teaching";
-
-const sectionHeadingClass = "text-xl font-semibold tracking-tight text-[#0f172b] sm:text-2xl";
-const sectionSubtextClass = "mt-1 max-w-3xl text-xs text-black sm:text-sm";
+import { buttonClasses } from "@/lib/ui";
 
 const softwareTools = [
   {
@@ -101,32 +98,26 @@ const templates = [
   },
 ];
 
+function SectionHeader({ title, subtitle }) {
+  return (
+    <header>
+      <h2 className="text-3xl font-semibold text-primary">{title}</h2>
+      <p className="mt-2 max-w-3xl leading-7 text-muted-foreground">{subtitle}</p>
+    </header>
+  );
+}
+
 function SectionBlock({ title, subtitle, items }) {
   return (
-    <section className="mt-14 first:mt-0">
-      <header className="mb-6">
-        <h2 className={sectionHeadingClass}>{title}</h2>
-        <p className={sectionSubtextClass}>{subtitle}</p>
-      </header>
+    <section>
+      <SectionHeader title={title} subtitle={subtitle} />
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+      <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-2">
         {items.map((item) => (
-          <article
-            key={item.title}
-            className="rounded-2xl border border-[#cbd5e1] bg-white p-5 shadow-[0_10px_24px_rgba(15,23,43,0.06)] transition-shadow duration-200 hover:shadow-[0_14px_30px_rgba(15,23,43,0.1)]"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <div className="inline-flex rounded-full bg-[#f1f5f9] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#0f172b]">
-                  Software
-                </div>
-                <h3 className="mt-3 text-xl font-semibold tracking-tight text-[#0f172b]">
-                  {item.title}
-                </h3>
-              </div>
-            </div>
-
-            <p className="mt-3 text-sm leading-relaxed text-black">{item.description}</p>
+          <article key={item.title} className="rounded-xl border border-border bg-card p-6">
+            <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-primary">Software</span>
+            <h3 className="mt-4 text-xl font-semibold text-primary">{item.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
 
             <ul className="mt-5 flex flex-wrap gap-2">
               {item.items.map((linkItem) => (
@@ -135,20 +126,10 @@ function SectionBlock({ title, subtitle, items }) {
                     href={linkItem.href}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="inline-flex items-center gap-2 rounded-full border border-[#cbd5e1] bg-white px-3.5 py-2 text-sm font-medium text-[#0f172b] transition-colors hover:border-[#0f172b] hover:bg-[#0f172b] hover:text-white"
+                    className={buttonClasses({ variant: "outline", size: "sm" })}
                   >
-                    <span>{linkItem.label}</span>
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      className="h-4 w-4"
-                      aria-hidden="true"
-                    >
-                      <path d="M7 17L17 7" />
-                      <path d="M8 7h9v9" />
-                    </svg>
+                    {linkItem.label}
+                    <ArrowUpRight />
                   </a>
                 </li>
               ))}
@@ -162,13 +143,10 @@ function SectionBlock({ title, subtitle, items }) {
 
 function TemplateSection({ title, subtitle, items }) {
   return (
-    <section className="mt-14 first:mt-0">
-      <header className="mb-6">
-        <h2 className={sectionHeadingClass}>{title}</h2>
-        <p className={sectionSubtextClass}>{subtitle}</p>
-      </header>
+    <section>
+      <SectionHeader title={title} subtitle={subtitle} />
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {items.map((item) => (
           <ResourceCard
             key={item.title}
@@ -185,42 +163,30 @@ function TemplateSection({ title, subtitle, items }) {
 
 export default function ResourcesPage() {
   return (
-    <div className="min-h-screen bg-white text-black">
-       <Header />
-       
-      <main className="mx-auto w-full max-w-[1240px] px-4 py-10 sm:px-6 md:px-8 lg:px-10">
-        {/* <nav className="mb-8 flex items-center gap-2 text-sm text-black">
-            <Link href="/" className="transition-colors hover:text-[#800020]">
-            Home
-          </Link>
-          <span>/</span>
-          <span className="font-medium text-black">Resources</span>
-        </nav> */}
+    <>
+      {/* Page header text from the design (pages.tsx L265 — Teaching page). */}
+      <PageHeader
+        eyebrow="Teaching"
+        title="Courses & academic training"
+        intro="Undergraduate and postgraduate teaching in metallurgy, computational methods, materials informatics, deformation, and ICME."
+      />
+      <div className="px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-7xl space-y-20">
+          <Teaching />
 
-        <section className="my-4 py-2">
-          <h1 className="text-3xl font-bold tracking-tight text-[#0f172b] sm:text-4xl">Resources</h1>
-          {/* <p className="mt-3 max-w-4xl text-base leading-relaxed text-black">
-            Software, teaching material, and templates to support research activities and collaboration.
-          </p> */}
-        </section>
-        <Teaching />
+          <SectionBlock
+            title="Software / Tools"
+            subtitle="Selected software and toolsets used across simulation, processing, databases, and visualization."
+            items={softwareTools}
+          />
 
-        <SectionBlock
-          title="Software / Tools"
-          subtitle="Selected software and toolsets used across simulation, processing, databases, and visualization."
-          items={softwareTools}
-        />
-
-        
-
-        {/* <TemplateSection
-          title="Templates"
-          subtitle="Reference files and documents for presentations, reporting, and internal workflows."
-          items={templates}
-        /> */}
-      </main>
-
-      <Footer />
-    </div>
+          {/* <TemplateSection
+            title="Templates"
+            subtitle="Reference files and documents for presentations, reporting, and internal workflows."
+            items={templates}
+          /> */}
+        </div>
+      </div>
+    </>
   );
 }

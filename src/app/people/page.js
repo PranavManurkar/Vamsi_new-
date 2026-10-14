@@ -1,10 +1,9 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
+import { GraduationCap, Microscope, Users } from "lucide-react";
+import PageHeader from "@/components/site/PageHeader";
+import PersonCard from "@/components/site/PersonCard";
+import { buttonClasses } from "@/lib/ui";
 
 const currentMembers = [
   {
@@ -17,7 +16,9 @@ const currentMembers = [
     name: "Pohrselvan",
     role: "Undergraduate Student",
     summary: "Atomistic simulations and material deformation mechanisms",
-    image: "/pohrselvan.svg",
+    // redesign-data: repo pointed to /pohrselvan.svg (missing); public/pohrselvan.jpg is an SVG "Photo Coming Soon" placeholder
+    // misnamed as .jpg, which browsers will not render. No photo available, so the card uses the design initials avatar (pages.tsx L55).
+    image: null,
   },
   {
     name: "Keerthan",
@@ -74,206 +75,124 @@ const opportunities = [
   },
 ];
 
-function Icon({ type }) {
-  if (type === "cap") {
-    return (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" className="h-9 w-9">
-        <path d="m3 10 9-5 9 5-9 5-9-5Z" />
-        <path d="M7 12v4c0 1.1 2.2 2 5 2s5-.9 5-2v-4" />
-      </svg>
-    );
-  }
+const roleIcons = { cap: GraduationCap, microscope: Microscope, jrf: Users };
 
-  if (type === "microscope") {
-    return (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" className="h-9 w-9">
-        <path d="M6 21h12" />
-        <path d="M8 21a4 4 0 0 0 4-4v-1" />
-        <path d="M9 3h4v4H9z" />
-        <path d="M13 5l3 3" />
-        <path d="M11 7l-2 2v3" />
-        <path d="M9 12h5" />
-      </svg>
-    );
-  }
-
+function SectionHeading({ title, subtitle }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" className="h-9 w-9">
-      <path d="M16 11c1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3 1.3 3 3 3Z" />
-      <path d="M8 11c1.7 0 3-1.3 3-3S9.7 5 8 5 5 6.3 5 8s1.3 3 3 3Z" />
-      <path d="M8 13c-2.8 0-5 2.2-5 5v1h10v-1c0-2.8-2.2-5-5-5Z" />
-      <path d="M16 13c-1 0-2 .3-2.8.8A6.9 6.9 0 0 1 15 19v1h6v-1c0-3.3-2.7-6-6-6Z" />
-    </svg>
+    <div className="mb-5">
+      <h2 className="text-2xl font-semibold text-primary">{title}</h2>
+      <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>
+    </div>
   );
 }
 
 export default function PeoplePage() {
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-black mb-2 pb-2">
-      <Header />
-      <main className="mx-auto w-full max-w-[1240px] px-4 pt-8 sm:px-6 md:px-8 lg:px-10">
-        <section className="my-4 py-2 ">
-          <h1 className="text-5xl font-bold tracking-tight text-[#0f172b] sm:text-4xl">People</h1>
-        </section>
+    <>
+      {/* Page header text from the design (pages.tsx L236). */}
+      <PageHeader
+        eyebrow="People"
+        title="The VAMSI group"
+        intro="Principal investigator, current undergraduate researchers, and alumni listed in the supplied CV."
+      />
 
-        <section className="mt-8">
+      <section className="px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-7xl">
           <div className="mb-5 flex items-center justify-between gap-4">
             <div>
-              <h2 className="text-xl font-semibold text-[#0f172b] sm:text-[1.8rem]">Group Leader</h2>
-              <p className="mt-1 text-sm text-black">Dr. Vamsi</p>
+              <h2 className="text-2xl font-semibold text-primary">Group Leader</h2>
+              <p className="mt-1 text-sm text-muted-foreground">Dr. Vamsi</p>
             </div>
-            <Link
-              href="/faculty"
-              className="inline-flex cursor-pointer items-center rounded-full border border-[#0f172b] bg-white px-4 py-2 text-sm font-medium text-[#0f172b] transition-colors hover:border-[#0f172b] hover:bg-[#0f172b] hover:text-white"
-            >
+            <Link href="/faculty" className={buttonClasses({ variant: "outline" })}>
               View full profile
             </Link>
           </div>
 
-          <Link href="/faculty" className="group block cursor-pointer">
-            <article className="overflow-hidden rounded-2xl bg-white shadow-[0_8px_24px_rgba(15,23,43,0.08)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(15,23,43,0.12)]">
-              <div className="grid gap-0 lg:grid-cols-[280px_1fr]">
-                <div className="relative min-h-[260px] bg-[#f1f5f9]">
-                  <Image
-                    src="/vamsi_pfp.jpeg"
-                    alt="Dr. K. V. Vamsi"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 280px"
-                    className="object-cover"
-                  />
-                </div>
+          <article className="grid overflow-hidden rounded-2xl border border-border bg-card lg:grid-cols-[0.6fr_1.4fr]">
+            <div className="relative min-h-[260px] lg:max-h-[34rem]">
+              <Image
+                src="/vamsi_pfp.jpeg"
+                alt="Dr. K. V. Vamsi"
+                fill
+                sizes="(min-width: 1024px) 30vw, 100vw"
+                className="object-cover object-top"
+              />
+            </div>
+            <div className="p-7 md:p-10">
+              <p className="text-sm font-semibold uppercase tracking-wide text-terracotta">Principal Investigator</p>
+              <h3 className="mt-3 text-3xl font-semibold text-primary">Dr. K. V. Vamsi</h3>
+              <p className="mt-2 text-muted-foreground">
+                Assistant Professor, Department of Metallurgical Engineering and Materials Science, IIT Indore
+              </p>
+              <p className="mt-6 leading-8 text-muted-foreground">
+                Leading the VAMSI Research Group with expertise in computational materials science,
+                high-temperature alloys, and ICME frameworks.
+              </p>
+            </div>
+          </article>
 
-                <div className="p-6 sm:p-8">
-                  <span className="inline-flex rounded-full bg-[#f1f5f9] px-3 py-1 text-xs font-semibold text-[#0f172b]">
-                    Principal Investigator
-                  </span>
-                  <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#0f172b] sm:text-[2.25rem]">
-                    Dr. K. V. Vamsi
-                  </h3>
-                  <p className="mt-2 text-sm font-medium text-black">
-                    Assistant Professor, Department of Metallurgical Engineering and Materials Science, IIT Indore
-                  </p>
-                  <p className="mt-4 max-w-3xl text-[0.98rem] leading-relaxed text-black">
-                    Leading the VAMSI Research Group with expertise in computational materials science,
-                    high-temperature alloys, and ICME frameworks.
-                  </p>
-                </div>
-              </div>
-            </article>
-          </Link>
-        </section>
-
-        <section className="mt-10">
-          <div className="mb-5">
-            <h2 className="text-2xl font-semibold text-[#0f172b] sm:text-[1.8rem]">Current Team Members</h2>
-            <p className="mt-1 text-sm text-black">Active students and researchers in the group.</p>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-            {currentMembers.map((member, index) => (
-              <article
-                key={member.name}
-                className="rounded-2xl bg-white px-5 py-6 text-center shadow-[0_6px_18px_rgba(15,23,43,0.05)]"
-              >
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  width={96}
-                  height={96}
-                  className="mx-auto h-[92px] w-[92px] rounded-full object-cover"
-                  style={{ objectPosition: `${35 + index * 10}% 35%` }}
+          {/* redesign-data: design uses initials avatars, 3 current students (no Arham Aneeq) and alumni "2024" (data.ts:1-11); repo: photos, 4 members, "Class of 2025". Kept repo. */}
+          <div className="mt-14">
+            <SectionHeading title="Current Team Members" subtitle="Active students and researchers in the group." />
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {currentMembers.map((member, index) => (
+                <PersonCard
+                  key={member.name}
+                  name={member.name}
+                  role={member.role}
+                  detail={member.summary}
+                  image={member.image}
+                  objectPosition={`${35 + index * 10}% 35%`}
                 />
-                <h3 className="mt-5 text-[1.35rem] font-semibold leading-tight text-[#0f172b]">
-                  {member.name}
-                </h3>
-                <p className="mt-2 text-sm font-medium text-black">{member.role}</p>
-                <p className="mt-3 min-h-[56px] text-[0.98rem] leading-relaxed text-black">
-                  {member.summary}
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-10 pb-6">
-          <div className="mb-5">
-            <h2 className="text-2xl font-semibold text-[#0f172b] sm:text-[1.8rem]">Alumni</h2>
-            <p className="mt-1 text-sm text-black">Former members of the group.</p>
+              ))}
+            </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-            {alumniMembers.map((member, index) => (
-              <article
-                key={member.name}
-                className="rounded-2xl bg-white px-5 py-6 text-center shadow-[0_6px_18px_rgba(15,23,43,0.05)]"
-              >
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  width={96}
-                  height={96}
-                  className="mx-auto h-[92px] w-[92px] rounded-full object-cover"
-                  style={{ objectPosition: `${35 + index * 10}% 35%` }}
+          <div className="mt-14">
+            <SectionHeading title="Alumni" subtitle="Former members of the group." />
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {alumniMembers.map((member, index) => (
+                <PersonCard
+                  key={member.name}
+                  name={member.name}
+                  role={member.role}
+                  detail={member.batch}
+                  image={member.image}
+                  objectPosition={`${35 + index * 10}% 35%`}
                 />
-                <h3 className="mt-5 text-[1.35rem] font-semibold leading-tight text-[#0f172b]">
-                  {member.name}
-                </h3>
-                <p className="mt-2 text-sm font-medium text-black">{member.role}</p>
-                <p className="mt-1 text-[0.92rem] text-black">{member.batch}</p>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
-        </section>
 
-        <section className="mt-12 border-t border-slate-200 pt-12">
-          <div className="mb-8">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#0f172b]/20 bg-white px-5 py-2 text-sm font-semibold text-[#0f172b]">
-              <span className="h-2 w-2 rounded-full bg-[#0f172b]" />
+          <div className="mt-14 border-t border-border pt-12">
+            <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-terracotta">
+              <span className="size-2 rounded-full bg-terracotta" aria-hidden="true" />
               Open Roles
-            </span>
-            {/* <h2 id="available-positions" className="mt-6 text-2xl font-bold tracking-[-0.02em] text-[#800020] sm:text-3xl">Available Positions</h2> */}
-          </div>
+            </p>
 
-          <div className="grid gap-5 md:grid-cols-3">
-            {opportunities.map((item, index) => (
-              <motion.a
-                href={item.href}
-                target={item.href && !item.href.startsWith("/") ? "_blank" : undefined}
-                rel={item.href && !item.href.startsWith("/") ? "noopener noreferrer" : undefined}
-                key={item.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.38, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -3 }}
-                className="cursor-pointer rounded-2xl bg-white px-6 py-8 text-center shadow-[0_8px_24px_rgba(15,23,43,0.08)] transition-colors hover:shadow-[0_8px_24px_rgba(15,23,43,0.12)]"
-              >
-                <div className="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center text-[#0f172b]">
-                  <Icon type={item.icon} />
-                </div>
-                <h3 className="text-xl font-semibold text-[#0f172b]">{item.title}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-black">{item.description}</p>
-              </motion.a>
-            ))}
+            {/* redesign: role cards left-aligned per the design (repo centred them). */}
+            <div className="mt-6 grid gap-5 md:grid-cols-3">
+              {opportunities.map((item) => {
+                const Icon = roleIcons[item.icon];
+                const external = item.href && !item.href.startsWith("/");
+                return (
+                  <a
+                    href={item.href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    key={item.title}
+                    className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-terracotta/40"
+                  >
+                    <Icon className="size-6 text-terracotta" aria-hidden="true" />
+                    <h3 className="mt-4 text-xl font-semibold text-primary">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
+                  </a>
+                );
+              })}
+            </div>
           </div>
-
-          <div className="mb-8">
-            {/* <motion.a
-              href="/#contact"
-              whileHover={{ y: -1 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="inline-flex h-12 items-center gap-2.5 rounded-full bg-[#800020] px-8 text-lg font-semibold text-white shadow-[0_6px_24px_rgba(128,0,32,0.3)]"
-            >
-              Apply Now
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
-                <path d="M5 12h14" />
-                <path d="m13 6 6 6-6 6" />
-              </svg>
-            </motion.a> */}
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+        </div>
+      </section>
+    </>
   );
 }

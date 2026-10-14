@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { buttonClasses } from "@/lib/ui";
 
 const newsItems = [
   {
@@ -51,39 +53,38 @@ export default function PhotoCarousel() {
   }, []);
 
   return (
-    <section className="py-10 sm:py-12 lg:py-10" aria-label="News gallery">
-      <div className="mx-auto max-w-[1180px]">
-        <div className="mb-7 text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-[#0f172b] sm:text-4xl">News</h2>
-          {/* <p className="mt-3 text-sm text-black sm:text-base">
-            Recent updates, milestones, and announcements.
-          </p> */}
-        </div>
+    <section className="bg-secondary px-5 py-20 md:px-8" aria-label="News gallery">
+      <div className="mx-auto max-w-7xl">
+        <h2 className="text-3xl font-semibold text-primary md:text-5xl">News</h2>
 
-        <div className="relative overflow-hidden rounded-2xl bg-white shadow-[0_14px_40px_rgba(15,23,43,0.1)]">
+        <div className="relative mt-8 overflow-hidden rounded-xl border border-border bg-card">
           <button
             type="button"
             aria-label="Previous news"
             onClick={showPrev}
-            className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white p-2 text-[#0f172b] transition-colors hover:bg-[#d2d3d8] sm:left-4"
+            className={buttonClasses({
+              variant: "outline",
+              size: "icon",
+              className: "absolute bottom-3 left-3 z-10 rounded-full sm:bottom-auto sm:left-4 sm:top-1/2 sm:-translate-y-1/2",
+            })}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4" aria-hidden="true">
-              <path d="m15 18-6-6 6-6" />
-            </svg>
+            <ChevronLeft />
           </button>
 
           <button
             type="button"
             aria-label="Next news"
             onClick={showNext}
-            className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full  bg-white p-2 text-[#0f172b] transition-colors hover:bg-[#d2d3d8] sm:right-4"
+            className={buttonClasses({
+              variant: "outline",
+              size: "icon",
+              className: "absolute bottom-3 left-16 z-10 rounded-full sm:bottom-auto sm:left-auto sm:right-4 sm:top-1/2 sm:-translate-y-1/2",
+            })}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4" aria-hidden="true">
-              <path d="m9 18 6-6-6-6" />
-            </svg>
+            <ChevronRight />
           </button>
 
-          <div className="relative min-h-[220px] sm:min-h-[240px]">
+          <div className="relative min-h-[260px] sm:min-h-[240px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={sortedNews[active].id}
@@ -91,15 +92,15 @@ export default function PhotoCarousel() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0.2, x: -24 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="flex items-center h-full"
+                className="flex h-full items-center"
               >
-                <div className="w-full px-16 sm:px-20 md:px-24 py-6 sm:py-8 md:py-10">
-                  <div className="inline-flex items-center gap-2 rounded-full  bg-[#d2d3d8] px-3 py-1.5 text-xs font-semibold text-[#0f172b]">
+                <div className="w-full px-6 pb-20 pt-6 sm:px-20 sm:py-8 md:px-24 md:py-10">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-primary">
                     <span>{sortedNews[active].displayDate}</span>
-                    <span className="h-1 w-1 rounded-full bg-[#0f172b]" />
+                    <span className="size-1 rounded-full bg-primary" />
                     <span>{new Date(sortedNews[active].date).getFullYear()}</span>
                   </div>
-                  <p className="mt-4 max-w-4xl text-base leading-relaxed text-black sm:text-lg">
+                  <p className="mt-4 max-w-4xl text-base leading-8 text-muted-foreground sm:text-lg">
                     {sortedNews[active].content}
                   </p>
                 </div>
@@ -107,17 +108,21 @@ export default function PhotoCarousel() {
             </AnimatePresence>
           </div>
 
-          <div className="absolute bottom-4 right-4 flex items-center gap-2 rounded-full bg-white/85 px-3 py-2 backdrop-blur-sm sm:bottom-5 sm:right-5">
+          <div className="absolute bottom-3 right-3 flex items-center rounded-full bg-card/90 px-1.5 backdrop-blur-sm sm:bottom-4 sm:right-4">
             {sortedNews.map((item, index) => (
               <button
                 key={item.id}
                 type="button"
                 aria-label={`Show news item ${index + 1}`}
                 onClick={() => setActive(index)}
-                className={`h-2.5 w-2.5 rounded-full transition-all ${
-                  active === index ? "bg-[#0f172b]" : "bg-[#d2d3d8]"
-                }`}
-              />
+                className="flex size-6 items-center justify-center"
+              >
+                <span
+                  className={`size-2 rounded-full transition-colors ${
+                    active === index ? "bg-primary" : "bg-primary/25"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>

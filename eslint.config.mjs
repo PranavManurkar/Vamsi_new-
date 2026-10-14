@@ -10,6 +10,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local redesign notes and design-source reference (gitignored).
+    "docs/**",
   ]),
 ]);
 
