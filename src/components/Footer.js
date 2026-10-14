@@ -96,7 +96,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm leading-6">
               <li><Link href="/publications" className={linkClass}>Contributions</Link></li>
               <li><Link href="/resources" className={linkClass}>Resources</Link></li>
-              <li><Link href="/#contact" className={linkClass}>Contact</Link></li>
+              <li><Link href="/contact" className={linkClass}>Contact</Link></li>
             </ul>
           </div>
         </div>

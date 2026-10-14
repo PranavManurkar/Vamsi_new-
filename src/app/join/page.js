@@ -26,9 +26,13 @@ const roleIcons = { cap: GraduationCap, microscope: Microscope, jrf: Users };
 export default function JoinPage() {
   return (
     <>
-      {/* redesign-data: design title "Join the research group" + intro (pages.tsx L274); repo page only has the "Open Roles" pill. Title reuses the repo's "Join Our Team" heading. */}
+      {/* Page header text from the design (pages.tsx L274). */}
       {/* redesign: repo hero-placeholder.svg background + blur replaced by the design dot-field texture. */}
-      <PageHeader eyebrow="Open Roles" title="Join Our Team" />
+      <PageHeader
+        eyebrow="Openings · Applications welcome"
+        title="Join the research group"
+        intro="The VAMSI Research Group is seeking a Junior Research Fellow, PhD students, and motivated postdoctoral researchers."
+      />
 
       <section className="px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto max-w-5xl">
@@ -46,10 +50,10 @@ export default function JoinPage() {
             })}
           </div>
 
-          {/* redesign-data: design has a "How to apply" list + mailto button (pages.tsx L285); repo has a single Apply Now CTA to /#contact. Kept repo. */}
+          {/* redesign-data: design has a "How to apply" list + mailto button (pages.tsx L285); repo has a single Apply Now CTA to the contact block (now /contact). Kept repo. */}
           <div className="mt-8 flex flex-col items-start gap-4 rounded-xl bg-primary p-7 text-primary-foreground sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-2xl font-semibold">Apply Now</h2>
-            <Link href="/#contact" className={buttonClasses({ variant: "terracotta", size: "lg" })}>
+            <Link href="/contact" className={buttonClasses({ variant: "terracotta", size: "lg" })}>
               Apply Now
               <ArrowRight />
             </Link>

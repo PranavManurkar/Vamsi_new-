@@ -15,7 +15,7 @@ const NAV_ITEMS = [
   { label: "Contributions", href: "/publications", isDropdown: true },
   { label: "Resources", href: "/resources" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const CONTRIBUTIONS_ITEMS = [

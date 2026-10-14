@@ -16,7 +16,6 @@ const nextConfig = {
       { source: "/about", destination: "/faculty", permanent: true },
       { source: "/openings", destination: "/join", permanent: true },
       { source: "/teaching", destination: "/resources", permanent: true },
-      { source: "/contact", destination: "/#contact", permanent: true },
       { source: "/research/:topic", destination: "/research", permanent: true },
     ];
   },
