@@ -37,7 +37,7 @@ export default function Home() {
               24 publications · 534 citations · h-index 14 · Metrics reported in the supplied 2026 CV.
             </p>
           </div>
-          {/* Design shows AlloyDesignDiagram here; replaced by the group photo carousel (taller 4:3 box on desktop to balance the text column). */}
+          {/* Design shows AlloyDesignDiagram here; replaced by the group photo carousel (taller 5:4 box on desktop to balance the text column). */}
           <div className="overflow-hidden rounded-2xl border border-border bg-card p-3 shadow-xl">
             <HeroCarousel />
           </div>

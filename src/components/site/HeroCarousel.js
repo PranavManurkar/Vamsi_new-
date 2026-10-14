@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { buttonClasses } from "@/lib/ui";
 
-// Group photo slider (from the previous home hero). 16:10 on small screens, 4:3 on desktop.
+// Group photo slider (from the previous home hero). 16:10 on small screens, 5:4 on desktop.
 const gallerySlides = [
   "/gallery/2c19b0_160c35c9d2da48378c9cf8fbdca1eab4~mv2.jpg.jpeg",
   "/gallery/2c19b0_172401da6fda496888cbe35ad182164d~mv2.jpg.jpeg",
@@ -23,7 +23,7 @@ export default function HeroCarousel() {
   }, []);
 
   return (
-    <div className="relative aspect-[16/10] overflow-hidden rounded-lg lg:aspect-[4/3]">
+    <div className="relative aspect-[16/10] overflow-hidden rounded-lg lg:aspect-[5/4]">
       {gallerySlides.map((src, index) => (
         <Image
           key={src}
