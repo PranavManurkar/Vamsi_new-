@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { buttonClasses } from "@/lib/ui";
 
-// Group photo slider (from the previous home hero). Box keeps the design hero diagram's 760×330 proportions.
+// Group photo slider (from the previous home hero). 16:10 on small screens, 4:3 on desktop.
 const gallerySlides = [
   "/gallery/2c19b0_160c35c9d2da48378c9cf8fbdca1eab4~mv2.jpg.jpeg",
   "/gallery/2c19b0_172401da6fda496888cbe35ad182164d~mv2.jpg.jpeg",
@@ -23,14 +23,14 @@ export default function HeroCarousel() {
   }, []);
 
   return (
-    <div className="relative aspect-[760/330] overflow-hidden rounded-lg">
+    <div className="relative aspect-[16/10] overflow-hidden rounded-lg lg:aspect-[4/3]">
       {gallerySlides.map((src, index) => (
         <Image
           key={src}
           src={src}
           alt=""
           fill
-          sizes="(max-width: 1024px) 100vw, 600px"
+          sizes="(max-width: 1024px) 100vw, 680px"
           priority={index === 0}
           className={`object-cover transition-opacity duration-500 ${active === index ? "opacity-100" : "opacity-0"}`}
         />

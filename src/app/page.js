@@ -13,10 +13,10 @@ export default function Home() {
   return (
     <>
       <section className="dot-field px-5 pb-20 pt-24 md:px-8 md:pb-28 md:pt-28">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_1.1fr] xl:gap-16">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-terracotta">VAMSI Research Group · IIT Indore</p>
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.1] text-primary md:text-6xl lg:text-7xl">
+            <h1 className="mt-5 text-4xl font-semibold leading-[1.1] text-primary md:text-5xl xl:text-6xl">
               Virtual Alloys Modelling, Simulation & Informatics
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
@@ -37,7 +37,7 @@ export default function Home() {
               24 publications · 534 citations · h-index 14 · Metrics reported in the supplied 2026 CV.
             </p>
           </div>
-          {/* Design shows AlloyDesignDiagram here; replaced by the group photo carousel at the same box size. */}
+          {/* Design shows AlloyDesignDiagram here; replaced by the group photo carousel (taller 4:3 box on desktop to balance the text column). */}
           <div className="overflow-hidden rounded-2xl border border-border bg-card p-3 shadow-xl">
             <HeroCarousel />
           </div>
