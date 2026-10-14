@@ -1,13 +1,14 @@
 import Research from "@/components/Research";
 import CoreExpertise from "@/components/CoreExpertise";
+import PageHeader from "@/components/site/PageHeader";
 
 export default function ResearchPage() {
   return (
-    <div className="min-h-screen text-black">
-      <main className="mx-auto w-full max-w-[1240px] px-4 pt-8 sm:px-6 md:px-8 lg:px-10">
-        <Research />
-        <CoreExpertise />
-      </main>
-    </div>
+    <>
+      {/* redesign-data: design eyebrow "Research", title "Research themes" and an intro paragraph (pages.tsx L182); repo title "Research". Kept repo. */}
+      <PageHeader title="Research" />
+      <Research />
+      <CoreExpertise />
+    </>
   );
 }
