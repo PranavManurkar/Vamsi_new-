@@ -89,8 +89,12 @@ function SectionHeading({ title, subtitle }) {
 export default function PeoplePage() {
   return (
     <>
-      {/* redesign-data: design eyebrow "People", title "The VAMSI group" and intro (pages.tsx L236); repo title "People". Kept repo. */}
-      <PageHeader title="People" />
+      {/* Page header text from the design (pages.tsx L236). */}
+      <PageHeader
+        eyebrow="People"
+        title="The VAMSI group"
+        intro="Principal investigator, current undergraduate researchers, and alumni listed in the supplied CV."
+      />
 
       <section className="px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto max-w-7xl">
@@ -104,11 +108,7 @@ export default function PeoplePage() {
             </Link>
           </div>
 
-          <Link
-            href="/faculty"
-            aria-label="Dr. K. V. Vamsi — view full profile"
-            className="grid overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-terracotta/40 lg:grid-cols-[0.6fr_1.4fr]"
-          >
+          <article className="grid overflow-hidden rounded-2xl border border-border bg-card lg:grid-cols-[0.6fr_1.4fr]">
             <div className="relative min-h-[260px] lg:max-h-[34rem]">
               <Image
                 src="/vamsi_pfp.jpeg"
@@ -129,7 +129,7 @@ export default function PeoplePage() {
                 high-temperature alloys, and ICME frameworks.
               </p>
             </div>
-          </Link>
+          </article>
 
           {/* redesign-data: design uses initials avatars, 3 current students (no Arham Aneeq) and alumni "2024" (data.ts:1-11); repo: photos, 4 members, "Class of 2025". Kept repo. */}
           <div className="mt-14">
