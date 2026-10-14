@@ -1,7 +1,5 @@
 "use client";
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -58,8 +56,7 @@ function Icon({ type }) {
 
 export default function JoinPage() {
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-black">
-      <Header />
+    <div className="min-h-screen text-black">
       <main className="mx-auto w-full max-w-[1240px] px-4 pt-8 sm:px-6 md:px-8 lg:px-10">
         <section className="relative left-1/2 w-screen -translate-x-1/2 py-14 sm:py-16 lg:py-20">
           <div className="relative overflow-hidden bg-[#f8fafc] py-14 sm:py-16 lg:py-20">
@@ -119,7 +116,6 @@ export default function JoinPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

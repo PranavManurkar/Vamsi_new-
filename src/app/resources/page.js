@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import ResourceCard from "@/components/ResourceCard";
 import Teaching from "@/components/Teaching";
 
@@ -185,8 +183,7 @@ function TemplateSection({ title, subtitle, items }) {
 
 export default function ResourcesPage() {
   return (
-    <div className="min-h-screen bg-white text-black">
-       <Header />
+    <div className="min-h-screen text-black">
        
       <main className="mx-auto w-full max-w-[1240px] px-4 py-10 sm:px-6 md:px-8 lg:px-10">
         {/* <nav className="mb-8 flex items-center gap-2 text-sm text-black">
@@ -220,7 +217,6 @@ export default function ResourcesPage() {
         /> */}
       </main>
 
-      <Footer />
     </div>
   );
 }

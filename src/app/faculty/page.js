@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Inter, Playfair_Display } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -197,8 +195,7 @@ const fadeUp = {
 
 export default function FacultyPage() {
   return (
-    <div className={`${inter.className} min-h-screen bg-[#f8fafc] text-black`}>
-      <Header />
+    <div className={`${inter.className} min-h-screen text-black`}>
 
       <main className="mx-auto w-full max-w-[1240px] px-4 py-10 sm:px-6 md:px-8 lg:px-10">
         {/* Breadcrumb */}
@@ -594,7 +591,6 @@ export default function FacultyPage() {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 }

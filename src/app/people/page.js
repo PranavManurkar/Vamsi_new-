@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 
 const currentMembers = [
@@ -109,8 +107,7 @@ function Icon({ type }) {
 
 export default function PeoplePage() {
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-black mb-2 pb-2">
-      <Header />
+    <div className="min-h-screen text-black mb-2 pb-2">
       <main className="mx-auto w-full max-w-[1240px] px-4 pt-8 sm:px-6 md:px-8 lg:px-10">
         <section className="my-4 py-2 ">
           <h1 className="text-5xl font-bold tracking-tight text-[#0f172b] sm:text-4xl">People</h1>
@@ -273,7 +270,6 @@ export default function PeoplePage() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 
 const galleryImages = [
@@ -83,8 +81,7 @@ function GalleryCard({ image, index }) {
 
 export default function GalleryPage() {
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-black">
-      <Header />
+    <div className="min-h-screen text-black">
       <main className="mx-auto w-full max-w-[1240px] px-4 py-12 sm:px-6 md:px-8 lg:px-10">
         {/* Header Section */}
         <section className="mb-12">
@@ -103,7 +100,6 @@ export default function GalleryPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

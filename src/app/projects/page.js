@@ -2,15 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import ProjectCard from "@/components/ProjectCard";
 import { PROJECTS_DATA } from "@/lib/projectsData";
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-black">
-      <Header />
+    <div className="min-h-screen text-black">
 
       <main className="mx-auto w-full max-w-[1240px] px-4 py-10 sm:px-6 md:px-8 lg:px-10">
         {/* <nav className="mb-8 flex items-center gap-2 text-sm text-slate-500">
@@ -41,7 +38,6 @@ export default function ProjectsPage() {
         </motion.div>
       </main>
 
-      <Footer />
     </div>
   );
 }

@@ -42,127 +42,67 @@ function IconGithub() {
   );
 }
 
+const socialClass =
+  "inline-flex size-10 items-center justify-center rounded-lg bg-card text-primary transition-colors hover:text-terracotta pointer-coarse:size-11";
+const headingClass = "text-sm font-semibold uppercase tracking-[0.18em] text-terracotta";
+const linkClass = "font-medium text-primary transition-colors hover:text-terracotta";
+
 export default function Footer() {
   return (
-    <footer
-      className="border-t border-[#0f172b]/20 bg-white px-6 py-8 md:px-10 md:py-8 lg:px-12"
-    >
-      <div className="mx-auto max-w-[1320px]">
-        <div className="grid gap-8 md:grid-cols-[1.35fr_0.7fr_0.7fr] md:items-start md:gap-12 lg:gap-16">
+    <footer className="border-t border-border bg-secondary px-5 py-10 md:px-8">
+      <div className="mx-auto max-w-7xl">
+        {/* redesign: design footer has 2 columns (wordmark + inline links, SiteLayout.tsx:11); repo's 3 columns kept. */}
+        <div className="grid gap-8 md:grid-cols-[1.35fr_0.7fr_0.7fr] md:items-start">
           <div>
-            <div className="flex items-center gap-3">
-              <Image
-                src="/Vamsi_iiti_informal.png"
-                alt="VAMSI Research Group"
-                width={200}
-                height={80}
-                className="h-12 w-auto"
-              />
-            </div>
+            <Image
+              src="/Vamsi_iiti_informal.png"
+              alt="VAMSI Research Group"
+              width={200}
+              height={80}
+              className="h-12 w-auto"
+            />
 
-            <p className="mt-4 mr-16 max-w-[620px] text-[16px] leading-[1.55] text-black md:text-[17px]">
+            <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
               Virtual Alloys Modelling, Simulation & Informatics Research
               Group at IIT Indore
             </p>
 
+            {/* redesign-data: social links — design: none; repo: placeholder hrefs "#contact". Kept repo. */}
             <div className="mt-5 flex items-center gap-2.5">
-              <a
-                href="#contact"
-                aria-label="LinkedIn"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#f1f5f9] text-[#0f172b] transition-colors hover:bg-[#0f172b] hover:text-white"
-              >
+              <a href="#contact" aria-label="LinkedIn" className={socialClass}>
                 <IconLinkedIn />
               </a>
-              <a
-                href="#contact"
-                aria-label="Twitter"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#f1f5f9] text-[#0f172b] transition-colors hover:bg-[#0f172b] hover:text-white"
-              >
+              <a href="#contact" aria-label="Twitter" className={socialClass}>
                 <IconTwitter />
               </a>
-              <a
-                href="#contact"
-                aria-label="GitHub"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#f1f5f9] text-[#0f172b] transition-colors hover:bg-[#0f172b] hover:text-white"
-              >
+              <a href="#contact" aria-label="GitHub" className={socialClass}>
                 <IconGithub />
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="text-[15px] font-bold text-[#0f172b]">
-              Navigation
-            </h3>
-            <ul className="mt-4 space-y-2.5 text-[15px] leading-6 text-black">
-              <li>
-                <Link href="/" className="transition-colors hover:text-[#0f172b]">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/people" className="transition-colors hover:text-[#0f172b]">
-                  People
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/research"
-                  className="transition-colors hover:text-[#0f172b]"
-                >
-                  Research
-                </Link>
-              </li>
-              <li>
-                <Link href="/projects" className="transition-colors hover:text-[#0f172b]">
-                  Projects
-                </Link>
-              </li>
+            <h3 className={headingClass}>Navigation</h3>
+            <ul className="mt-4 space-y-2.5 text-sm leading-6">
+              <li><Link href="/" className={linkClass}>Home</Link></li>
+              <li><Link href="/people" className={linkClass}>People</Link></li>
+              <li><Link href="/research" className={linkClass}>Research</Link></li>
+              <li><Link href="/projects" className={linkClass}>Projects</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-[15px] font-bold text-[#0f172b]">
-              Resources
-            </h3>
-            <ul className="mt-4 space-y-2.5 text-[15px] leading-6 text-black">
-              <li>
-                <Link
-                  href="/publications"
-                  className="transition-colors hover:text-[#0f172b]"
-                >
-                  Contributions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/resources"
-                  className="transition-colors hover:text-[#0f172b]"
-                >
-                  Resources
-                </Link>
-              </li>
-              <li>
-                <Link href="/#contact" className="transition-colors hover:text-[#0f172b]">
-                  Contact
-                </Link>
-              </li>
+            <h3 className={headingClass}>Resources</h3>
+            <ul className="mt-4 space-y-2.5 text-sm leading-6">
+              <li><Link href="/publications" className={linkClass}>Contributions</Link></li>
+              <li><Link href="/resources" className={linkClass}>Resources</Link></li>
+              <li><Link href="/#contact" className={linkClass}>Contact</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-[#0f172b]/20 pt-5">
-          <div className="flex flex-col items-start justify-between gap-3 text-[14px] text-black sm:flex-row sm:items-center">
-            <p>© 2026 VAMSI Research Group, IIT Indore. All rights reserved.</p>
-            {/* <div className="flex items-center gap-6">
-              <a href="#" className="transition-colors hover:text-[#800020]">
-                Privacy Policy
-              </a>
-              <a href="#" className="transition-colors hover:text-[#800020]">
-                Terms of Use
-              </a>
-            </div> */}
-          </div>
+        <div className="mt-8 border-t border-border pt-5 text-sm text-muted-foreground">
+          <p>© 2026 VAMSI Research Group, IIT Indore. All rights reserved.</p>
         </div>
       </div>
     </footer>
