@@ -164,7 +164,12 @@ function TemplateSection({ title, subtitle, items }) {
 export default function ResourcesPage() {
   return (
     <>
-      <PageHeader title="Resources" />
+      {/* Page header text from the design (pages.tsx L265 — Teaching page). */}
+      <PageHeader
+        eyebrow="Teaching"
+        title="Courses & academic training"
+        intro="Undergraduate and postgraduate teaching in metallurgy, computational methods, materials informatics, deformation, and ICME."
+      />
       <div className="px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto max-w-7xl space-y-20">
           <Teaching />

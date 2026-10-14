@@ -79,12 +79,15 @@ export default function PublicationsContent() {
   // Derived from the URL during render (replaces the old setState-in-effect; same fallback to "publications").
   const tabParam = searchParams?.get("tab");
   const activeTab = TABS.some((t) => t.id === tabParam) ? tabParam : "publications";
-  const activeLabel = TABS.find((t) => t.id === activeTab).label;
 
   return (
     <>
-      {/* redesign-data: design eyebrow "Publications", title "Academic bibliography" and intro (pages.tsx L256); repo title follows the active tab. Kept repo. */}
-      <PageHeader title={activeLabel} />
+      {/* Page header text from the design (pages.tsx L256). */}
+      <PageHeader
+        eyebrow="Publications"
+        title="Academic bibliography"
+        intro="Chronological journal records from the supplied CV. DOI links are shown only where independently verified."
+      />
 
       <section id="contributions" className="px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto max-w-7xl">

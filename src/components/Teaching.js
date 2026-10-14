@@ -129,7 +129,6 @@ export default function Teaching() {
 
   return (
     <section id="teaching" className="scroll-mt-28">
-      {/* redesign-data: design Teaching page header "Courses & academic training" + intro (pages.tsx L265); repo heading "Teaching". Kept repo. */}
       <h2 className="text-3xl font-semibold text-primary">Teaching</h2>
       <p className="mt-2 max-w-3xl leading-7 text-muted-foreground">
         Courses offered at IIT Indore — Department of Metallurgical Engineering &amp; Materials Science

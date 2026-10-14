@@ -5,8 +5,12 @@ import { PROJECTS_DATA } from "@/lib/projectsData";
 export default function ProjectsPage() {
   return (
     <>
-      {/* redesign-data: design eyebrow "Projects", title "Sponsored research" and intro (pages.tsx L224); repo title "Research Projects". Kept repo. */}
-      <PageHeader title="Research Projects" />
+      {/* Page header text from the design (pages.tsx L224). */}
+      <PageHeader
+        eyebrow="Projects"
+        title="Sponsored research"
+        intro="Ongoing awards, approved projects, completed work, and proposals under review are shown separately."
+      />
       <section className="px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto max-w-7xl">
           <ProjectTabs projects={PROJECTS_DATA} />
