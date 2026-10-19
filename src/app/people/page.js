@@ -1,55 +1,65 @@
 import Image from "next/image";
 import Link from "next/link";
-import { GraduationCap, Microscope, Users } from "lucide-react";
+import { ArrowRight, GraduationCap, Microscope, Users } from "lucide-react";
 import PageHeader from "@/components/site/PageHeader";
 import PersonCard from "@/components/site/PersonCard";
 import { buttonClasses } from "@/lib/ui";
 
 const currentMembers = [
   {
-    name: "Burra Vijayusha",
+    name: "Burra Vijyusha",
     role: "Undergraduate Student",
-    summary: "Computational modeling of alloy properties and phase stability",
+    project: "Design of model Ni-Co-X for strength",
     image: "/vijusha.jpeg",
   },
   {
     name: "Pohrselvan",
     role: "Undergraduate Student",
-    summary: "Atomistic simulations and material deformation mechanisms",
-    // redesign-data: repo pointed to /pohrselvan.svg (missing); public/pohrselvan.jpg is an SVG "Photo Coming Soon" placeholder
-    // misnamed as .jpg, which browsers will not render. No photo available, so the card uses the design initials avatar (pages.tsx L55).
+    project: "Understanding segregation behavior to antiphase boundaries",
     image: null,
   },
   {
     name: "Keerthan",
     role: "Undergraduate Student",
-    summary: "High-throughput screening and machine learning for materials",
+    project: "Mechanical properties of In-Sn system",
     image: "/kirtan.jpeg",
   },
   {
     name: "Arham Aneeq",
     role: "Undergraduate Student",
-    summary: "Thermodynamic modeling of multi-component alloy systems",
+    project: "Modelling strength in FCC solid solutions and precipitate strengthened systems",
     image: "/arham.jpg",
+  },
+  {
+    name: "Kartik Buddhani",
+    role: "Undergraduate Student",
+    project: "Computational alloy design of Ferritic superalloys",
+    image: null,
+  },
+  {
+    name: "Krushna Satish More",
+    role: "Undergraduate Student",
+    project: "Computational alloy design of Ferritic superalloys",
+    image: null,
   },
 ];
 
 const alumniMembers = [
   {
     name: "Amirthan",
-    role: "Undergraduate Student",
+    role: "Alumni · Undergraduate",
     batch: "Class of 2025",
     image: "/Amirthan.avif",
   },
   {
     name: "Nitheesvar",
-    role: "Undergraduate Student",
+    role: "Alumni · Undergraduate",
     batch: "Class of 2025",
     image: "/Nitheesvar.avif",
   },
   {
     name: "Vamshi Krishna Rao",
-    role: "Undergraduate Student",
+    role: "Alumni · Undergraduate",
     batch: "Class of 2025",
     image: "/Vamshi Krishna Rao.avif",
   },
@@ -61,17 +71,21 @@ const opportunities = [
     description: "Full funding available for computational materials science research. Teaching Assistantship positions are available.",
     icon: "cap",
     href: "https://academic.iiti.ac.in/phdadvt.php",
+    linkLabel: "Institute PhD Portal",
   },
   {
     title: "Postdoctoral Fellows",
-    description: "Coming soon",
+    description: "Advanced research opportunities in MPEAs and superalloys. Motivated candidates with strong DFT or atomistic background are encouraged to contact.",
     icon: "microscope",
+    href: "/contact",
+    linkLabel: "Get in Touch",
   },
   {
     title: "JRF",
-    description: "Junior Research Fellowship for motivated graduates to contribute to cutting-edge atomistic simulations and alloy design projects",
+    description: "Junior Research Fellowship (ANRF-ARG Project) for motivated graduates to contribute to cutting-edge atomistic simulations and alloy design projects.",
     icon: "jrf",
-    href: "/projects",
+    href: "https://www.iiti.ac.in/careers/jrf_srf_positions?tab=jrf",
+    linkLabel: "View Institute Advertisement",
   },
 ];
 
@@ -79,9 +93,9 @@ const roleIcons = { cap: GraduationCap, microscope: Microscope, jrf: Users };
 
 function SectionHeading({ title, subtitle }) {
   return (
-    <div className="mb-5">
-      <h2 className="text-2xl font-semibold text-primary">{title}</h2>
-      <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>
+    <div className="mb-6">
+      <h2 className="text-2xl font-semibold text-primary md:text-3xl">{title}</h2>
+      {subtitle && <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
     </div>
   );
 }
@@ -89,68 +103,92 @@ function SectionHeading({ title, subtitle }) {
 export default function PeoplePage() {
   return (
     <>
-      {/* Page header text from the design (pages.tsx L236). */}
       <PageHeader
         eyebrow="People"
         title="The VAMSI group"
-        intro="Principal investigator, current undergraduate researchers, and alumni listed in the supplied CV."
+        intro="Principal investigator, current undergraduate researchers, and alumni."
       />
 
       <section className="px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-5 flex items-center justify-between gap-4">
+          {/* Principal Investigator Section */}
+          <div className="mb-6 flex items-center justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-semibold text-primary">Group Leader</h2>
-              <p className="mt-1 text-sm text-muted-foreground">Dr. Vamsi</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">Group Leadership</p>
+              <h2 className="text-2xl font-semibold text-primary">Principal Investigator</h2>
             </div>
             <Link href="/faculty" className={buttonClasses({ variant: "outline" })}>
-              View full profile
+              View Full profile →
             </Link>
           </div>
 
-          <article className="grid overflow-hidden rounded-2xl border border-border bg-card lg:grid-cols-[0.6fr_1.4fr]">
-            <div className="relative min-h-[260px] lg:max-h-[34rem]">
-              <Image
-                src="/vamsi_pfp.jpeg"
-                alt="Dr. K. V. Vamsi"
-                fill
-                sizes="(min-width: 1024px) 30vw, 100vw"
-                className="object-cover object-top"
-              />
-            </div>
-            <div className="p-7 md:p-10">
-              <p className="text-sm font-semibold uppercase tracking-wide text-terracotta">Principal Investigator</p>
-              <h3 className="mt-3 text-3xl font-semibold text-primary">Dr. K. V. Vamsi</h3>
-              <p className="mt-2 text-muted-foreground">
-                Assistant Professor, Department of Metallurgical Engineering and Materials Science, IIT Indore
-              </p>
-              <p className="mt-6 leading-8 text-muted-foreground">
-                Leading the VAMSI Research Group with expertise in computational materials science,
-                high-temperature alloys, and ICME frameworks.
-              </p>
+          {/* PI Card with 1:1 Aspect Ratio Picture */}
+          <article className="overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8">
+            <div className="grid items-center gap-8 md:grid-cols-[300px_1fr] lg:grid-cols-[340px_1fr]">
+              {/* Picture adjusted to 1:1 aspect ratio */}
+              <div className="relative aspect-square w-full max-w-[340px] overflow-hidden rounded-xl border border-border bg-secondary shadow-sm">
+                <Image
+                  src="/vamsi_pfp.jpeg"
+                  alt="Dr. Venkata Vamsi Koruprolu"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 340px, 300px"
+                  className="object-cover object-top"
+                />
+              </div>
+
+              <div className="flex flex-col justify-center">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+                  PRINCIPAL INVESTIGATOR
+                </p>
+                <h3 className="mt-2 text-3xl font-semibold text-primary md:text-4xl">
+                  Dr. Venkata Vamsi Koruprolu
+                </h3>
+                <p className="mt-2 text-base font-medium text-primary/80">
+                  Assistant Professor, Department of Metallurgical Engineering &amp; Materials Science
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+                  Computational materials scientist working on defect energetics, deformation mechanisms,
+                  mechanical behaviour, superalloys, multi-principal element alloys and physics-guided alloy design.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <Link href="/faculty" className={buttonClasses({ size: "lg" })}>
+                    View Full profile →
+                  </Link>
+                  <Link href="/contact" className={buttonClasses({ variant: "outline", size: "lg" })}>
+                    Get in Touch
+                  </Link>
+                </div>
+              </div>
             </div>
           </article>
 
-          {/* redesign-data: design uses initials avatars, 3 current students (no Arham Aneeq) and alumni "2024" (data.ts:1-11); repo: photos, 4 members, "Class of 2025". Kept repo. */}
-          <div className="mt-14">
-            <SectionHeading title="Current Team Members" subtitle="Active students and researchers in the group." />
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Current Team Members */}
+          <div className="mt-16">
+            <SectionHeading
+              title="Current Team Members"
+              subtitle="Active students and researchers in the group. Click the LinkedIn icon to view profiles."
+            />
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {currentMembers.map((member, index) => (
                 <PersonCard
                   key={member.name}
                   name={member.name}
                   role={member.role}
-                  detail={member.summary}
+                  detail={member.project}
                   image={member.image}
                   objectPosition={`${35 + index * 10}% 35%`}
+                  showLinkedIn={true}
                 />
               ))}
             </div>
           </div>
 
-          <div className="mt-14">
-            <SectionHeading title="Alumni" subtitle="Former members of the group." />
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Alumni */}
+          <div className="mt-16">
+            <SectionHeading title="Alumni" subtitle="Former members of the research group." />
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {alumniMembers.map((member, index) => (
                 <PersonCard
                   key={member.name}
@@ -159,34 +197,51 @@ export default function PeoplePage() {
                   detail={member.batch}
                   image={member.image}
                   objectPosition={`${35 + index * 10}% 35%`}
+                  showLinkedIn={false}
                 />
               ))}
             </div>
           </div>
 
-          <div className="mt-14 border-t border-border pt-12">
-            <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-terracotta">
+          {/* Open Roles */}
+          <div className="mt-16 border-t border-border pt-14">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
               <span className="size-2 rounded-full bg-terracotta" aria-hidden="true" />
-              Open Roles
+              Open Roles · Join Us
             </p>
+            <h2 className="mt-2 text-2xl font-semibold text-primary md:text-3xl">Open Positions</h2>
 
-            {/* redesign: role cards left-aligned per the design (repo centred them). */}
-            <div className="mt-6 grid gap-5 md:grid-cols-3">
+            <div className="mt-8 grid gap-6 md:grid-cols-3">
               {opportunities.map((item) => {
                 const Icon = roleIcons[item.icon];
-                const external = item.href && !item.href.startsWith("/");
+                const isExternal = item.href && !item.href.startsWith("/");
                 return (
-                  <a
-                    href={item.href}
-                    target={external ? "_blank" : undefined}
-                    rel={external ? "noopener noreferrer" : undefined}
+                  <div
                     key={item.title}
-                    className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-terracotta/40"
+                    className="flex flex-col justify-between rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-terracotta/40"
                   >
-                    <Icon className="size-6 text-terracotta" aria-hidden="true" />
-                    <h3 className="mt-4 text-xl font-semibold text-primary">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
-                  </a>
+                    <div>
+                      <Icon className="size-6 text-terracotta" aria-hidden="true" />
+                      <h3 className="mt-4 text-xl font-semibold text-primary">{item.title}</h3>
+                      <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
+                    </div>
+
+                    <div className="mt-6 pt-4 border-t border-border">
+                      <a
+                        href={item.href}
+                        target={isExternal ? "_blank" : undefined}
+                        rel={isExternal ? "noopener noreferrer" : undefined}
+                        className={buttonClasses({
+                          variant: item.icon === "jrf" ? "default" : "outline",
+                          size: "sm",
+                          className: "w-full justify-between",
+                        })}
+                      >
+                        <span>{item.linkLabel}</span>
+                        <ArrowRight className="size-4" />
+                      </a>
+                    </div>
+                  </div>
                 );
               })}
             </div>

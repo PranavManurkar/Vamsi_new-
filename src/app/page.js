@@ -1,13 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import { AlloyDesignDiagram, FaultDiagram, LatticeDiagram } from "@/components/site/ScientificDiagrams";
 import { buttonClasses } from "@/lib/ui";
 import { featuredResearch, news, selectedPublications } from "@/lib/homeData";
 import HeroCarousel from "@/components/site/HeroCarousel";
-
-// Home page — ported 1:1 from the design HomePage (pages.tsx L80-146).
-// Link targets mapped to existing routes: /research/<slug> -> /research, /openings -> /join.
-const diagrams = { alloy: AlloyDesignDiagram, lattice: LatticeDiagram, fault: FaultDiagram };
 
 export default function Home() {
   return (
@@ -15,7 +11,9 @@ export default function Home() {
       <section className="dot-field px-5 pb-20 pt-24 md:px-8 md:pb-28 md:pt-28">
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_1.1fr] xl:gap-16">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-terracotta">VAMSI Research Group · IIT Indore</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-terracotta">
+              VAMSI Research Group · IIT Indore
+            </p>
             <h1 className="mt-5 text-4xl font-semibold leading-[1.1] text-primary md:text-5xl xl:text-6xl">
               Virtual Alloys Modelling, Simulation & Informatics
             </h1>
@@ -34,10 +32,9 @@ export default function Home() {
               </Link>
             </div>
             <p className="mt-8 text-sm text-muted-foreground">
-              24 publications · 534 citations · h-index 14 · Metrics reported in the supplied 2026 CV.
+              24 publications · 538 citations · h-index 14 · Metrics reported in the supplied 2026 CV.
             </p>
           </div>
-          {/* Design shows AlloyDesignDiagram here; replaced by the group photo carousel (taller 5:4 box on desktop to balance the text column). */}
           <div className="overflow-hidden rounded-2xl border border-border bg-card p-3 shadow-xl">
             <HeroCarousel />
           </div>
@@ -48,28 +45,49 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-terracotta">Featured research</p>
           <div className="mt-4 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <h2 className="max-w-2xl text-3xl font-semibold text-primary md:text-5xl">Mechanisms first. Design follows.</h2>
+            <div>
+              <h2 className="max-w-3xl text-3xl font-semibold text-primary md:text-5xl">
+                Mechanisms first. Design follows.
+              </h2>
+              <p className="mt-3 max-w-2xl text-base text-muted-foreground">
+                Physics-guided and AI-enabled design of advanced structural alloys across length and time scales.
+              </p>
+            </div>
             <Link href="/research" className={buttonClasses({ variant: "outline" })}>
               View all research <ArrowRight />
             </Link>
           </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {featuredResearch.map(({ slug, title, summary, diagram }) => {
-              const Diagram = diagrams[diagram];
-              return (
-                <article className="overflow-hidden rounded-xl border border-border bg-card shadow-sm" key={slug}>
-                  <Diagram />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-primary">{title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{summary}</p>
-                    {/* Design links to /research/<slug>; this site has no theme detail pages, so it opens /research. */}
-                    <Link href="/research" className={buttonClasses({ variant: "link", className: "mt-3 px-0" })}>
-                      Explore theme <ArrowRight />
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
+
+          {/* 4 Research Themes with schematic figures */}
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredResearch.map(({ slug, title, shortTitle, summary, image }) => (
+              <article
+                className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:border-terracotta/50 hover:shadow-md"
+                key={slug}
+              >
+                <div className="relative aspect-[16/11] w-full overflow-hidden bg-secondary">
+                  <Image
+                    src={image}
+                    alt={title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="text-lg font-semibold leading-snug text-primary group-hover:text-terracotta">
+                    {shortTitle || title}
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-6 text-muted-foreground line-clamp-4">{summary}</p>
+                  <Link
+                    href={`/research/${slug}`}
+                    className={buttonClasses({ variant: "link", className: "mt-4 self-start px-0 text-terracotta" })}
+                  >
+                    Explore theme <ArrowRight className="ml-1 size-4" />
+                  </Link>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -125,16 +143,30 @@ export default function Home() {
       <section className="bg-terracotta px-5 py-14 text-white md:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 md:flex-row md:items-center">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">Research openings · Applications welcome</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
+              Research openings · Applications welcome
+            </p>
             <h2 className="mt-2 text-2xl font-semibold md:text-3xl">Join the VAMSI Research Group</h2>
-            <p className="mt-2 max-w-3xl text-white/80">
-              We are recruiting a Junior Research Fellow with a potential pathway to a PhD, PhD students, and motivated postdoctoral researchers.
+            <p className="mt-2 max-w-3xl text-white/90">
+              We are actively hiring a Junior Research Fellow (JRF, ANRF-ARG project) with a pathway to a PhD, PhD students, and motivated postdoctoral researchers.
             </p>
           </div>
-          {/* Design links to /openings; the existing openings page is /join. */}
-          <Link href="/join" className={buttonClasses({ variant: "secondary", size: "lg" })}>
-            View opportunities <ArrowRight />
-          </Link>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="https://www.iiti.ac.in/careers/jrf_srf_positions?tab=jrf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonClasses({ variant: "secondary", size: "lg", className: "font-semibold" })}
+            >
+              JRF Advertisement <ExternalLink className="ml-1 size-4" />
+            </a>
+            <Link
+              href="/join"
+              className={buttonClasses({ variant: "outline", size: "lg", className: "border-white/40 text-white hover:bg-white hover:text-primary" })}
+            >
+              All Openings <ArrowRight className="ml-1 size-4" />
+            </Link>
+          </div>
         </div>
       </section>
     </>
