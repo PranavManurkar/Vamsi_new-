@@ -1,5 +1,6 @@
 import { AlloyDesignDiagram, FaultDiagram, MethodsDiagram } from "@/components/site/ScientificDiagrams";
 
+
 const researchItems = [
   {
     title: "Computational Design of Advanced Alloys",
