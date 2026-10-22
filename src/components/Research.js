@@ -3,6 +3,44 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { RESEARCH_THEMES } from "@/lib/researchData";
 import { buttonClasses } from "@/lib/ui";
+import { AlloyDesignDiagram, FaultDiagram, MethodsDiagram } from "@/components/site/ScientificDiagrams";
+
+
+const researchItems = [
+  {
+    title: "Computational Design of Advanced Alloys",
+    description:
+      "Design of complex alloy systems guided by physics-based modelling and thermodynamics:",
+    bullets: [
+      "Superalloys for high-temperature applications",
+      "Multi-principal element alloys (FCC, BCC, BCC+B2 systems)",
+      "Intermetallic systems",
+    ],
+    // redesign: placeholder image replaced by the design diagram (frontend imagery only).
+    diagram: AlloyDesignDiagram,
+  },
+  {
+    title: "Phase Stability & Defect Physics",
+    description:
+      "Understanding how composition and defects control microstructure and properties:",
+    bullets: [
+      "Phase stability and evolution in multi-component systems",
+      "Defect energetics (stacking faults, diffusion, interfaces)",
+      "Microstructure-property relationships",
+    ],
+    diagram: FaultDiagram,
+  },
+  {
+    title: "Multiscale Modelling & ICME",
+    description: "Bridging length scales for predictive materials design:",
+    bullets: [
+      "Linking atomistic mechanisms to macroscopic properties",
+      "Process-structure-property-performance relationships",
+      "ICME frameworks for alloy optimization",
+    ],
+    diagram: MethodsDiagram,
+  },
+];
 
 export default function Research() {
   return (
