@@ -13,7 +13,7 @@ const NAV_ITEMS = [
   { label: "Research", href: "/research" },
   { label: "Projects", href: "/projects" },
   { label: "Contributions", href: "/publications", isDropdown: true },
-  { label: "Resources", href: "/resources" },
+  { label: "Teaching", href: "/teaching" },
   { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/contact" },
 ];
@@ -58,7 +58,6 @@ export default function Header() {
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 py-2 shadow-sm backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 md:px-8">
-          {/* redesign: design uses text wordmark "VAMSI" + "Research Group / IIT Indore" (Navbar.tsx:36-39); kept repo logo per D8 */}
           <Link href="/" className="flex shrink-0 items-center" onClick={closeMenus}>
             <Image
               src="/Vamsi_iiti_informal.png"

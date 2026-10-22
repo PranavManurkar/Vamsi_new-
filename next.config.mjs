@@ -10,13 +10,11 @@ const nextConfig = {
       },
     ],
   },
-  // Design URLs (Figma Make redesign) -> existing routes, which stay canonical.
   async redirects() {
     return [
       { source: "/about", destination: "/faculty", permanent: true },
       { source: "/openings", destination: "/join", permanent: true },
-      { source: "/teaching", destination: "/resources", permanent: true },
-      { source: "/research/:topic", destination: "/research", permanent: true },
+      { source: "/resources", destination: "/teaching", permanent: true },
     ];
   },
 };

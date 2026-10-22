@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sprout, Sun } from "lucide-react";
+import { BookOpen, GraduationCap, Sprout, Sun } from "lucide-react";
 import { buttonClasses } from "@/lib/ui";
 import { onTabKeyDown } from "@/lib/tabs";
 
@@ -12,9 +12,6 @@ const autumnCourses = [
     credits: "2-1-0-3",
     level: "UG",
     since: "July 2023",
-    description:
-      "Covers fundamental principles of physical metallurgy including phase diagrams, nucleation and growth, precipitation strengthening, and microstructural evolution. Emphasizes relationships between processing, microstructure, and mechanical properties in metallic systems.",
-    topics: ["Phase Diagrams", "Nucleation & Growth", "Precipitation Hardening", "Microstructure"],
   },
   {
     code: "MM 226",
@@ -22,9 +19,6 @@ const autumnCourses = [
     credits: "2-1-0-1.5",
     level: "UG",
     since: "July 2023",
-    description:
-      "Introduces data-driven approaches and machine learning techniques applied to materials science. Covers data collection, feature engineering, predictive modeling, and optimization algorithms for accelerating materials discovery and design.",
-    topics: ["Machine Learning", "Data Analysis", "Materials Discovery", "Python / R"],
   },
   {
     code: "MM 353",
@@ -32,9 +26,6 @@ const autumnCourses = [
     credits: "0-0-2-1",
     level: "UG",
     since: "July 2023",
-    description:
-      "Hands-on laboratory course exploring computational techniques for materials analysis and simulation. Students implement finite element methods, molecular dynamics simulations, phase-field modeling, and visualization of computational results.",
-    topics: ["FEM", "Molecular Dynamics", "Phase-field Modeling", "Computational Tools"],
   },
   {
     code: "MM 309N",
@@ -42,9 +33,6 @@ const autumnCourses = [
     credits: "2-1-0-3",
     level: "UG",
     since: "July 2023",
-    description:
-      "Introduces numerical methods and computational techniques applied to materials science problems. Topics include finite difference methods, molecular dynamics fundamentals, Monte Carlo simulations, and data analysis using Python/MATLAB.",
-    topics: ["Numerical Methods", "Molecular Dynamics", "Monte Carlo", "Python / MATLAB"],
   },
 ];
 
@@ -55,9 +43,6 @@ const springCourses = [
     credits: "3-0-0",
     level: "UG / PG",
     since: "Jan 2024",
-    description:
-      "Covers mechanisms governing plastic deformation at elevated temperatures in metals and alloys. Focuses on creep, dislocation dynamics, planar fault energies, and deformation pathways in superalloys and intermetallics.",
-    topics: ["Creep Mechanisms", "Dislocation Dynamics", "Planar Fault Energies", "Superalloys"],
   },
   {
     code: "MM 644",
@@ -65,9 +50,6 @@ const springCourses = [
     credits: "3-0-0",
     level: "PG",
     since: "Jan 2024",
-    description:
-      "Explores the ICME paradigm for accelerated alloy design. Integrates DFT, CALPHAD thermodynamics, phase-field modelling, and data-driven methods to link processing–structure–property–performance relationships.",
-    topics: ["DFT", "CALPHAD", "Phase-field Modelling", "Materials Informatics"],
   },
 ];
 
@@ -95,28 +77,24 @@ const SEMESTERS = [
   { id: "spring", label: "Spring Semester", sub: "Jan – May", icon: Sprout, courses: springCourses },
 ];
 
-// redesign: gradient top bar and watermark course number dropped (not in the design palette); design course card (pages.tsx L266).
+// Display courses as clean cards (similar to publications), without explanations or keywords
 function CourseCard({ course }) {
   return (
-    <article className="flex flex-col rounded-xl border border-border bg-card p-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <article className="grid gap-3 border-b border-border p-5 last:border-0 md:grid-cols-[6.5rem_1fr_auto] md:items-center">
+      <div>
         <p className="font-semibold text-terracotta">{course.code}</p>
-        <div className="flex flex-wrap items-center gap-2">
-          <span className={pill}>{course.level}</span>
-          <span className="text-xs text-muted-foreground">
-            Since {course.since}
-            {course.credits && ` · ${course.credits} credits`}
-          </span>
-        </div>
+        <span className="mt-1 inline-block text-xs text-muted-foreground">Since {course.since}</span>
       </div>
-      <h3 className="mt-4 text-xl font-semibold text-primary">{course.title}</h3>
-      <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground">{course.description}</p>
-      <div className="mt-5 flex flex-wrap gap-2 border-t border-border pt-4">
-        {course.topics.map((t) => (
-          <span key={t} className={pill}>
-            {t}
-          </span>
-        ))}
+
+      <div className="min-w-0">
+        <h3 className="text-lg font-semibold leading-snug text-primary">{course.title}</h3>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Credits: {course.credits}
+        </p>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <span className={pill}>{course.level}</span>
       </div>
     </article>
   );
@@ -124,17 +102,22 @@ function CourseCard({ course }) {
 
 export default function Teaching() {
   const [active, setActive] = useState("autumn");
-  const courses = SEMESTERS.find((s) => s.id === active).courses;
+  const currentSemester = SEMESTERS.find((s) => s.id === active) || SEMESTERS[0];
+  const courses = currentSemester.courses;
   const ids = SEMESTERS.map((s) => s.id);
 
   return (
     <section id="teaching" className="scroll-mt-28">
-      <h2 className="text-3xl font-semibold text-primary">Teaching</h2>
-      <p className="mt-2 max-w-3xl leading-7 text-muted-foreground">
-        Courses offered at IIT Indore — Department of Metallurgical Engineering &amp; Materials Science
-      </p>
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <h2 className="text-3xl font-semibold text-primary">Courses Offered</h2>
+          <p className="mt-2 max-w-3xl leading-7 text-muted-foreground">
+            Academic courses at IIT Indore — Department of Metallurgical Engineering &amp; Materials Science
+          </p>
+        </div>
+      </div>
 
-      {/* redesign: spring-animated sliding pill replaced by the design's plain tab buttons. */}
+      {/* Semester filter tabs */}
       <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Semester">
         {SEMESTERS.map((tab) => {
           const Icon = tab.icon;
@@ -153,32 +136,45 @@ export default function Teaching() {
               onKeyDown={(e) => onTabKeyDown(e, ids, active, setActive)}
               className={buttonClasses({ variant: active === tab.id ? "default" : "outline", className: "min-w-0" })}
             >
-              <Icon />
+              <Icon className="mr-1.5 size-4" />
               {tab.label}
               <span className="ml-1 text-xs opacity-65">
-                {tab.sub} · {count} {count === 1 ? "course" : "courses"}
+                ({count} {count === 1 ? "course" : "courses"})
               </span>
             </button>
           );
         })}
       </div>
 
-      <div id="course-panel" role="tabpanel" aria-labelledby={`tab-${active}`} className="mt-8 grid gap-5 md:grid-cols-2">
+      {/* Courses displayed as card container similar to publications */}
+      <div
+        id="course-panel"
+        role="tabpanel"
+        aria-labelledby={`tab-${active}`}
+        className="mt-6 overflow-hidden rounded-xl border border-border bg-card shadow-sm"
+      >
         {courses.map((course) => (
           <CourseCard key={course.code} course={course} />
         ))}
       </div>
 
-      <div className="mt-12">
+      {/* Previous Teaching Experience */}
+      <div className="mt-14">
         <h3 className="text-xl font-semibold text-primary">Previous Teaching Experience</h3>
-        <p className="mt-1 text-sm text-muted-foreground">@ Indian Institute of Science, Bangalore</p>
+        <p className="mt-1 text-sm text-muted-foreground">@ Indian Institute of Science (IISc), Bangalore</p>
         <div className="mt-5 grid gap-5 md:grid-cols-2">
           {prevTeaching.map((group) => (
-            <div key={group.role} className="rounded-xl bg-primary p-6 text-primary-foreground">
-              <h4 className="font-semibold">{group.role}</h4>
-              <ul className="mt-3 space-y-2 leading-7 text-primary-foreground/70">
+            <div key={group.role} className="rounded-xl border border-border bg-card p-6 shadow-sm">
+              <div className="flex items-center gap-2 text-terracotta">
+                <GraduationCap className="size-5" />
+                <h4 className="font-semibold text-primary">{group.role}</h4>
+              </div>
+              <ul className="mt-3 space-y-2 text-sm leading-6 text-muted-foreground">
                 {group.items.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-terracotta" />
+                    <span>{item}</span>
+                  </li>
                 ))}
               </ul>
             </div>

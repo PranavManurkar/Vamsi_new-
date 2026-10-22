@@ -1,4 +1,4 @@
-import { Download } from "lucide-react";
+import { Download, ExternalLink } from "lucide-react";
 import { buttonClasses } from "@/lib/ui";
 
 const pill = "rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-primary";
@@ -8,8 +8,7 @@ export default function ProjectCard({ project }) {
   const hasPositions = project.positions && project.positions.toLowerCase() === "available";
 
   return (
-    <article className="flex flex-col rounded-xl border border-border bg-card p-6">
-      {/* redesign-data: design card leads with a grant reference number (pages.tsx L227); repo has none. Status/positions shown as design pills instead of the repo's labelled side panel. */}
+    <article className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-terracotta/40">
       <div className="flex flex-wrap items-center gap-2">
         <span className={pill} aria-label={`Project status: ${project.status}`}>
           {project.status}
@@ -19,7 +18,7 @@ export default function ProjectCard({ project }) {
             className="rounded-full bg-terracotta px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white"
             aria-label="Positions available"
           >
-            Available
+            Positions Available
           </span>
         )}
       </div>
@@ -36,21 +35,33 @@ export default function ProjectCard({ project }) {
         {hasPositions && (
           <>
             <dt className="text-muted-foreground">Positions</dt>
-            <dd className="font-medium text-primary">Available</dd>
+            <dd className="font-medium text-terracotta">1 JRF (PhD Opportunity)</dd>
           </>
         )}
       </dl>
 
       {hasPositions && (
-        <a
-          href="/Vamsi_iit_indore_JRF_advertisement.pdf"
-          download="advertisement.pdf"
-          className={buttonClasses({ variant: "outline", size: "sm", className: "mt-5 self-start" })}
-        >
-          <Download />
-          Download Advertisement
-        </a>
+        <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border pt-4">
+          <a
+            href="https://www.iiti.ac.in/careers/jrf_srf_positions?tab=jrf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonClasses({ size: "sm" })}
+          >
+            Apply on Institute Site
+            <ExternalLink className="ml-1 size-3.5" />
+          </a>
+          <a
+            href="/Vamsi_iit_indore_JRF_advertisement.pdf"
+            download="Vamsi_iit_indore_JRF_advertisement.pdf"
+            className={buttonClasses({ variant: "outline", size: "sm" })}
+          >
+            <Download className="mr-1 size-3.5" />
+            Download Advertisement
+          </a>
+        </div>
       )}
+
       {isOngoing && !hasPositions && (
         <div className="mt-auto pt-5">
           <p className="border-t border-border pt-4 text-xs text-muted-foreground">Active project in progress</p>

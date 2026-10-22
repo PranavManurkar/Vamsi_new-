@@ -51,7 +51,6 @@ export default function Footer() {
   return (
     <footer className="border-t border-border bg-secondary px-5 py-10 md:px-8">
       <div className="mx-auto max-w-7xl">
-        {/* redesign: design footer has 2 columns (wordmark + inline links, SiteLayout.tsx:11); repo's 3 columns kept. */}
         <div className="grid gap-8 md:grid-cols-[1.35fr_0.7fr_0.7fr] md:items-start">
           <div>
             <Image
@@ -63,26 +62,43 @@ export default function Footer() {
             />
 
             <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
-              Virtual Alloys Modelling, Simulation & Informatics Research
+              Virtual Alloys Modelling, Simulation &amp; Informatics Research
               Group at IIT Indore
             </p>
 
-            {/* redesign-data: social links — design: none; repo: placeholder hrefs "#contact". Kept repo. */}
             <div className="mt-5 flex items-center gap-2.5">
-              <a href="#contact" aria-label="LinkedIn" className={socialClass}>
+              <a
+                href="https://www.linkedin.com/in/kvvamsi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className={socialClass}
+              >
                 <IconLinkedIn />
               </a>
-              <a href="#contact" aria-label="Twitter" className={socialClass}>
+              <a
+                href="https://twitter.com/kvvamsi"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter / X"
+                className={socialClass}
+              >
                 <IconTwitter />
               </a>
-              <a href="#contact" aria-label="GitHub" className={socialClass}>
+              <a
+                href="https://github.com/PranavManurkar/Vamsi_new-"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className={socialClass}
+              >
                 <IconGithub />
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className={headingClass}>Navigation</h3>
+            <h3 className={headingClass}>Explore</h3>
             <ul className="mt-4 space-y-2.5 text-sm leading-6">
               <li><Link href="/" className={linkClass}>Home</Link></li>
               <li><Link href="/people" className={linkClass}>People</Link></li>
@@ -92,17 +108,19 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className={headingClass}>Resources</h3>
+            <h3 className={headingClass}>Academic</h3>
             <ul className="mt-4 space-y-2.5 text-sm leading-6">
               <li><Link href="/publications" className={linkClass}>Contributions</Link></li>
-              <li><Link href="/resources" className={linkClass}>Resources</Link></li>
+              <li><Link href="/teaching" className={linkClass}>Teaching</Link></li>
+              <li><Link href="/gallery" className={linkClass}>Gallery</Link></li>
               <li><Link href="/contact" className={linkClass}>Contact</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-8 border-t border-border pt-5 text-sm text-muted-foreground">
+        <div className="mt-8 border-t border-border pt-5 text-sm text-muted-foreground flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>© 2026 VAMSI Research Group, IIT Indore. All rights reserved.</p>
+          <p className="text-xs">Department of Metallurgical Engineering &amp; Materials Science</p>
         </div>
       </div>
     </footer>
