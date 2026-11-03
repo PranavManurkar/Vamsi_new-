@@ -110,7 +110,7 @@ export default function Footer() {
           <div>
             <h3 className={headingClass}>Academic</h3>
             <ul className="mt-4 space-y-2.5 text-sm leading-6">
-              <li><Link href="/publications" className={linkClass}>Contributions</Link></li>
+              <li><Link href="/publications" className={linkClass}>Publications</Link></li>
               <li><Link href="/teaching" className={linkClass}>Teaching</Link></li>
               <li><Link href="/gallery" className={linkClass}>Gallery</Link></li>
               <li><Link href="/contact" className={linkClass}>Contact</Link></li>

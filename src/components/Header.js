@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { buttonClasses } from "@/lib/ui";
 
 const NAV_ITEMS = [
@@ -12,16 +12,10 @@ const NAV_ITEMS = [
   { label: "People", href: "/people" },
   { label: "Research", href: "/research" },
   { label: "Projects", href: "/projects" },
-  { label: "Contributions", href: "/publications", isDropdown: true },
+  { label: "Publications", href: "/publications" },
   { label: "Teaching", href: "/teaching" },
   { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/contact" },
-];
-
-const CONTRIBUTIONS_ITEMS = [
-  { label: "Publications", href: "/publications?tab=publications" },
-  { label: "Conference Proceedings", href: "/publications?tab=proceedings" },
-  { label: "Talks", href: "/publications?tab=talks" },
 ];
 
 const desktopLink = (active) =>
@@ -31,7 +25,6 @@ const mobileLink = (active) => `font-medium ${active ? "text-terracotta" : "text
 export default function Header() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isContributionsOpen, setIsContributionsOpen] = useState(false);
 
   useEffect(() => {
     const closeOnResize = () => {
@@ -48,7 +41,6 @@ export default function Header() {
 
   const closeMenus = () => {
     setIsMobileMenuOpen(false);
-    setIsContributionsOpen(false);
   };
 
   const navItems = NAV_ITEMS.filter((item) => item.label !== "Contact");
@@ -70,31 +62,11 @@ export default function Header() {
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex">
-            {navItems.map((item) =>
-              item.isDropdown ? (
-                <div key={item.label} className="group relative">
-                  <Link href={item.href} className={`flex items-center gap-1 ${desktopLink(isActive(item.href))}`}>
-                    {item.label}
-                    <ChevronDown className="size-3" />
-                  </Link>
-                  <div className="invisible absolute left-0 top-full w-72 translate-y-2 rounded-xl border border-border bg-card p-2 opacity-0 shadow-xl transition-all group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                    {CONTRIBUTIONS_ITEMS.map((subItem) => (
-                      <Link
-                        key={subItem.label}
-                        href={subItem.href}
-                        className="block rounded-lg px-4 py-3 text-sm text-primary hover:bg-secondary"
-                      >
-                        {subItem.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <Link key={item.label} href={item.href} className={desktopLink(isActive(item.href))}>
-                  {item.label}
-                </Link>
-              )
-            )}
+            {navItems.map((item) => (
+              <Link key={item.label} href={item.href} className={desktopLink(isActive(item.href))}>
+                {item.label}
+              </Link>
+            ))}
             <Link href={contact.href} className={buttonClasses({ size: "sm" })}>
               {contact.label}
             </Link>
@@ -117,55 +89,17 @@ export default function Header() {
             className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-border bg-background px-5 py-4 lg:hidden"
           >
             <ul className="mx-auto flex max-w-7xl flex-col">
-              {NAV_ITEMS.map((item) =>
-                item.isDropdown ? (
-                  <li key={item.label} className="border-b border-border">
-                    <div className="flex items-center justify-between">
-                      <Link
-                        href={item.href}
-                        className={`flex-1 py-3 ${mobileLink(isActive(item.href))}`}
-                        onClick={closeMenus}
-                      >
-                        {item.label}
-                      </Link>
-                      <button
-                        type="button"
-                        className={buttonClasses({ variant: "ghost", size: "icon" })}
-                        aria-label={`${isContributionsOpen ? "Close" : "Open"} contributions submenu`}
-                        aria-expanded={isContributionsOpen}
-                        onClick={() => setIsContributionsOpen((p) => !p)}
-                      >
-                        <ChevronDown className={`transition-transform ${isContributionsOpen ? "rotate-180" : ""}`} />
-                      </button>
-                    </div>
-                    {isContributionsOpen && (
-                      <ul className="mb-3 ml-3 border-l border-terracotta/40 pl-4">
-                        {CONTRIBUTIONS_ITEMS.map((subItem) => (
-                          <li key={subItem.label}>
-                            <Link
-                              href={subItem.href}
-                              className="block py-2 text-sm text-muted-foreground hover:text-terracotta"
-                              onClick={closeMenus}
-                            >
-                              {subItem.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ) : (
-                  <li key={item.label} className="border-b border-border last:border-0">
-                    <Link
-                      href={item.href}
-                      className={`block py-3 ${mobileLink(isActive(item.href))}`}
-                      onClick={closeMenus}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                )
-              )}
+              {NAV_ITEMS.map((item) => (
+                <li key={item.label} className="border-b border-border last:border-0">
+                  <Link
+                    href={item.href}
+                    className={`block py-3 ${mobileLink(isActive(item.href))}`}
+                    onClick={closeMenus}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
         )}
