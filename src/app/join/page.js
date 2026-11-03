@@ -53,7 +53,7 @@ export default function JoinPage() {
         intro="The VAMSI Research Group is actively seeking a Junior Research Fellow (JRF), PhD students, and motivated postdoctoral researchers."
       />
 
-      <section className="px-5 py-16 md:px-8 md:py-24">
+      <section className="px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
         <div className="mx-auto max-w-5xl">
           <div className="grid gap-6 md:grid-cols-3">
             {opportunities.map((item) => {

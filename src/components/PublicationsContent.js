@@ -173,7 +173,7 @@ export default function PublicationsContent() {
         intro="Chronological journal records, conference proceedings, and invited talks from the supplied CV."
       />
 
-      <section id="contributions" className="px-5 py-16 md:px-8 md:py-24">
+      <section id="contributions" className="px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
         <div className="mx-auto max-w-7xl">
           <nav aria-label="Contribution type" className="mb-8 flex flex-wrap gap-2">
             {TABS.map((tab) => (

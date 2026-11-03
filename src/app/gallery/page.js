@@ -64,7 +64,7 @@ export default function GalleryPage() {
         title="Gallery"
         intro="Lab life, symposiums, group events, and computational materials research at IIT Indore."
       />
-      <section className="px-5 py-16 md:px-8 md:py-24">
+      <section className="px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {galleryImages.map((image) => (
             <GalleryCard key={image.id} image={image} />

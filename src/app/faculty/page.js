@@ -79,7 +79,7 @@ export default function FacultyPage() {
         intro="Academic profile, research interests, appointments, and selected distinctions."
       />
 
-      <div className="px-5 py-16 md:px-8 md:py-24">
+      <div className="px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
         <div className="mx-auto max-w-7xl">
           {/* Profile header with 1:1 aspect ratio picture */}
           <div className="grid overflow-hidden rounded-2xl border border-border bg-card p-6 md:p-8 lg:grid-cols-[340px_1fr] items-center gap-8">

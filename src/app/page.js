@@ -8,7 +8,8 @@ import HeroCarousel from "@/components/site/HeroCarousel";
 export default function Home() {
   return (
     <>
-      <section className="dot-field px-5 pb-20 pt-24 md:px-8 md:pb-28 md:pt-28">
+      {/* Hero section */}
+      <section className="dot-field px-5 pb-10 pt-24 md:px-8 md:pb-14 md:pt-28">
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_1.1fr] xl:gap-16">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-terracotta">
@@ -41,7 +42,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-20 md:px-8 md:py-24">
+      {/* Brown card CTA banner from Figma design */}
+      <section className="bg-terracotta px-5 py-12 text-white md:px-8 md:py-14">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 md:flex-row md:items-center">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/80 md:text-sm">
+              Research openings · Applications welcome
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold md:text-3xl lg:text-4xl text-white">
+              Join the VAMSI Research Group
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/90 md:text-base">
+              We are recruiting a Junior Research Fellow with a potential pathway to a PhD, PhD students, and motivated postdoctoral researchers.
+            </p>
+          </div>
+          <div className="flex shrink-0 items-center">
+            <Link
+              href="/join"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#fbf5eb] px-6 py-3.5 text-sm font-semibold text-primary shadow-sm transition hover:bg-white"
+            >
+              View opportunities <ArrowRight className="size-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured research section */}
+      <section className="px-5 py-12 md:px-8 md:py-16">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-terracotta">Featured research</p>
           <div className="mt-4 flex flex-col justify-between gap-4 md:flex-row md:items-end">
@@ -92,7 +119,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-secondary px-5 py-20 md:px-8">
+      {/* Recent news and Selected publications */}
+      <section className="bg-secondary px-5 py-16 md:px-8 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-terracotta">Recent news</p>
@@ -135,36 +163,6 @@ export default function Home() {
             </div>
             <Link href="/publications" className={buttonClasses({ variant: "outline", className: "mt-5" })}>
               Full bibliography <ArrowRight />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-terracotta px-5 py-14 text-white md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 md:flex-row md:items-center">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
-              Research openings · Applications welcome
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold md:text-3xl">Join the VAMSI Research Group</h2>
-            <p className="mt-2 max-w-3xl text-white/90">
-              We are actively hiring a Junior Research Fellow (JRF, ANRF-ARG project) with a pathway to a PhD, PhD students, and motivated postdoctoral researchers.
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <a
-              href="https://www.iiti.ac.in/careers/jrf_srf_positions?tab=jrf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={buttonClasses({ variant: "secondary", size: "lg", className: "font-semibold" })}
-            >
-              JRF Advertisement <ExternalLink className="ml-1 size-4" />
-            </a>
-            <Link
-              href="/join"
-              className={buttonClasses({ variant: "outline", size: "lg", className: "border-white/40 text-white hover:bg-white hover:text-primary" })}
-            >
-              All Openings <ArrowRight className="ml-1 size-4" />
             </Link>
           </div>
         </div>

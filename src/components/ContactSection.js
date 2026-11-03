@@ -48,7 +48,7 @@ function InfoTile({ icon: Icon, label, children }) {
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="px-5 py-16 md:px-8 md:py-24">
+    <section id="contact" className="px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
       <div className="mx-auto max-w-7xl">
         {/* Page title comes from the /contact PageHeader (design ContactPage). Repo heading was "Get in Touch". */}
         <div className="grid items-start gap-8 lg:grid-cols-[0.85fr_1.15fr]">

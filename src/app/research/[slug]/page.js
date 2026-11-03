@@ -26,7 +26,7 @@ export default async function ResearchThemePage({ params }) {
   return (
     <div className="min-h-screen bg-background">
       {/* Top Banner / Breadcrumb */}
-      <section className="dot-field border-b border-border px-5 pb-12 pt-28 md:px-8 md:pb-16 md:pt-32">
+      <section className="dot-field border-b border-border px-5 pb-8 pt-24 md:px-8 md:pb-10 md:pt-28">
         <div className="mx-auto max-w-5xl">
           <Link
             href="/research"
@@ -49,7 +49,7 @@ export default async function ResearchThemePage({ params }) {
       </section>
 
       {/* Main Content */}
-      <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
+      <div className="mx-auto max-w-5xl px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
         {/* Schematic Figure */}
         <figure className="mb-14 overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
           <div className="relative aspect-[16/9] w-full bg-secondary">

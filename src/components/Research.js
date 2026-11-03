@@ -44,7 +44,7 @@ const researchItems = [
 
 export default function Research() {
   return (
-    <section id="research" className="px-5 py-12 md:px-8 md:py-16">
+    <section id="research" className="px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
       <div className="mx-auto max-w-7xl">
         {/* Featured Research Banner with the integrated overview figure */}
         <div className="mb-14 overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8">

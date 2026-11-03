@@ -109,7 +109,7 @@ export default function PeoplePage() {
         intro="Principal investigator, current undergraduate researchers, and alumni."
       />
 
-      <section className="px-5 py-16 md:px-8 md:py-24">
+      <section className="px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
         <div className="mx-auto max-w-7xl">
           {/* Principal Investigator Section */}
           <div className="mb-6 flex items-center justify-between gap-4">

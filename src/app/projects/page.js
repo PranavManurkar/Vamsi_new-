@@ -11,7 +11,7 @@ export default function ProjectsPage() {
         title="Sponsored research"
         intro="Ongoing awards, approved projects, completed work, and proposals under review are shown separately."
       />
-      <section className="px-5 py-16 md:px-8 md:py-24">
+      <section className="px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
         <div className="mx-auto max-w-7xl">
           <ProjectTabs projects={PROJECTS_DATA} />
         </div>

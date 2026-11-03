@@ -127,7 +127,7 @@ export default function TeachingPage() {
         title="Courses & academic training"
         intro="Undergraduate and postgraduate teaching in metallurgy, computational methods, materials informatics, deformation, and ICME."
       />
-      <div className="px-5 py-16 md:px-8 md:py-24">
+      <div className="px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
         <div className="mx-auto max-w-7xl space-y-20">
           <Teaching />
 
