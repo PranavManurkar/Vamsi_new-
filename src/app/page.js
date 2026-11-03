@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       {/* Hero section */}
-      <section className="dot-field px-5 pb-10 pt-24 md:px-8 md:pb-14 md:pt-28">
+      <section className="dot-field px-5 pb-8 pt-24 md:px-8 md:pb-10 md:pt-28">
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_1.1fr] xl:gap-16">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-terracotta">
@@ -32,9 +32,6 @@ export default function Home() {
                 Latest publications
               </Link>
             </div>
-            <p className="mt-8 text-sm text-muted-foreground">
-              24 publications · 538 citations · h-index 14 · Metrics reported in the supplied 2026 CV.
-            </p>
           </div>
           <div className="overflow-hidden rounded-2xl border border-border bg-card p-3 shadow-xl">
             <HeroCarousel />
