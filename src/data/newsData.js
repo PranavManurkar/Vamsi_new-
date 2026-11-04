@@ -45,16 +45,44 @@ export const NEWS_UPDATES = [
   },
   {
     id: "maha-ai-se-grants-2026",
-    title: "Two Selected Projects under Mission AI for Science and Engineering (MAHA AI-SE)",
+    title: "Two Landmark Projects Selected under Mission AI for Science and Engineering (MAHA AI-SE)",
     date: "March 2026",
     category: "Research Grant · ANRF",
-    image: null,
-    alt: null,
+    image: "/images/research/physics_guided_modelling_ml.png",
+    alt: "Physics-guided machine learning and surrogate models for materials discovery",
     summary:
-      "Delighted to be selected under the Mission AI for Science and Engineering (MAHA AI-SE) programme for two landmark projects: autonomous AI co-design of alloy chemistry/microstructures for bond coats, and foundation model-driven accelerated discovery of Re/Ru-lean Ni-base alloys.",
+      "Delighted to be selected under the Mission AI for Science and Engineering (MAHA AI-SE) programme for two projects: autonomous AI co-design of alloy chemistry/microstructures for bond coats, and foundation model-driven accelerated discovery of Re/Ru-lean Ni-base alloys.",
     caption:
-      "Selected for two high-temperature and strategic AI-materials projects funded by ANRF in collaboration with IISc, IIT Ropar, IIT Hyderabad, IIT Madras, and SPPU.",
+      "AI for Science & Engineering: Multiscale surrogate modeling and autonomous alloy co-design in collaboration with IISc, IIT Ropar, IIT Hyderabad, IIT Madras, and SPPU.",
     link: "https://www.linkedin.com/posts/kvvamsi_ai-se-activity-7498686726341832704-SuRg",
+    externalLabel: "View on LinkedIn",
+  },
+  {
+    id: "mmta-publication-2026",
+    title: "New Journal Article on Creep-Driven Solute Segregation Published in MMTA",
+    date: "February 2026",
+    category: "Journal Publication · MMTA",
+    image: "/images/research/advanced_structural_alloys_superalloys.png",
+    alt: "Microstructure and planar fault shearing in single crystal superalloys",
+    summary:
+      "Our research paper titled 'Creep-Driven Solute Segregation to Planar Faults in Ni-Base Single-Crystal Superalloys' has been published in Metallurgical and Materials Transactions A (Volume 57, 2026), in collaboration with FAU Erlangen-Nürnberg and international partners.",
+    caption:
+      "Dislocation shearing and solute segregation to planar faults in Ni-base single crystal superalloys under creep deformation.",
+    link: "https://doi.org/10.1007/s11661-026-08173-4",
+    externalLabel: "View Article (DOI)",
+  },
+  {
+    id: "pmbm-2026-invited-talk",
+    title: "Invited Lecture on Planar Fault Energetics at PMBM 2026, IIT Bombay",
+    date: "January 2026",
+    category: "Invited Lecture · Symposium",
+    image: "/images/research/defect_energetics_mechanical_behaviour.png",
+    alt: "Defect energetics, stacking faults, and mechanical behaviour",
+    summary:
+      "Dr. Venkata Vamsi delivered an invited lecture titled 'Modelling Deformation Pathways in Ordered Alloys via Planar Fault Energetics' at the Perspectives on the Mechanical Behavior of Materials (PMBM 2026) symposium hosted by IIT Bombay.",
+    caption:
+      "Generalized stacking fault energetics and deformation pathways presented at the PMBM 2026 symposium, IIT Bombay.",
+    link: "https://www.linkedin.com/in/kvvamsi/",
     externalLabel: "View on LinkedIn",
   },
 ];
