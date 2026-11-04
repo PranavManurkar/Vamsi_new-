@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { buttonClasses } from "@/lib/ui";
-import { featuredResearch, news, selectedPublications } from "@/lib/homeData";
+import { news, selectedPublications } from "@/lib/homeData";
 import HeroCarousel from "@/components/site/HeroCarousel";
 
 export default function Home() {
@@ -82,36 +82,20 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* 4 Research Themes with schematic figures */}
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {featuredResearch.map(({ slug, title, shortTitle, summary, image }) => (
-              <article
-                className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:border-terracotta/50 hover:shadow-md"
-                key={slug}
-              >
-                <div className="relative aspect-[16/11] w-full overflow-hidden bg-secondary">
-                  <Image
-                    src={image}
-                    alt={title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-lg font-semibold leading-snug text-primary group-hover:text-terracotta">
-                    {shortTitle || title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm leading-6 text-muted-foreground line-clamp-4">{summary}</p>
-                  <Link
-                    href={`/research/${slug}`}
-                    className={buttonClasses({ variant: "link", className: "mt-4 self-start px-0 text-terracotta" })}
-                  >
-                    Explore theme <ArrowRight className="ml-1 size-4" />
-                  </Link>
-                </div>
-              </article>
-            ))}
+          {/* Integrated framework overview diagram */}
+          <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-sm md:p-6 lg:p-8">
+            <Link href="/research" className="group block">
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-border bg-background">
+                <Image
+                  src="/images/research/research_landing_page.png"
+                  alt="Integrated Framework: Physics-Guided and AI-Enabled Design of Advanced Alloys"
+                  fill
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  className="object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                  priority
+                />
+              </div>
+            </Link>
           </div>
         </div>
       </section>

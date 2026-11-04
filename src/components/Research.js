@@ -46,33 +46,6 @@ export default function Research() {
   return (
     <section id="research" className="px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
       <div className="mx-auto max-w-7xl">
-        {/* Featured Research Banner with the integrated overview figure */}
-        <div className="mb-14 overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8">
-          <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-center">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
-                Integrated Framework
-              </p>
-              <h2 className="mt-1 text-2xl font-semibold text-primary md:text-3xl">
-                Physics-Guided and AI-Enabled Design of Advanced Alloys
-              </h2>
-              <p className="mt-2 text-sm text-muted-foreground md:text-base">
-                Mechanisms first. Design follows. From planar faults to thermodynamic phase stability and surrogate models.
-              </p>
-            </div>
-          </div>
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-border bg-background">
-            <Image
-              src="/images/research/research_landing_page.png"
-              alt="Physics-Guided and AI-Enabled Design of Advanced Alloys Overview"
-              fill
-              priority
-              sizes="(max-width: 1200px) 100vw, 1200px"
-              className="object-contain"
-            />
-          </div>
-        </div>
-
         {/* 4 Themes Heading */}
         <div className="mb-8">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">Research Thrusts</p>
