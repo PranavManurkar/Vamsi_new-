@@ -5,9 +5,9 @@ import { buttonClasses } from "@/lib/ui";
 export default function PublicationRows({ items }) {
   return (
     <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-      {items.map((item) => (
+      {items.map((item, idx) => (
         <article
-          key={item.doi || item.title}
+          key={item.doi || `${item.year}-${item.title}-${idx}`}
           className="grid gap-3 border-b border-border p-5 last:border-0 md:grid-cols-[5rem_1fr_auto]"
         >
           <p className="font-semibold text-terracotta">{item.year}</p>
@@ -18,7 +18,14 @@ export default function PublicationRows({ items }) {
               <p className="mt-1 text-sm italic text-muted-foreground">{item.journal}</p>
             )}
             {item.venue && (
-              <p className="mt-1 text-xs italic text-muted-foreground">{item.venue}</p>
+              <p className="mt-1 text-sm italic text-muted-foreground">{item.venue}</p>
+            )}
+            {item.badge && (
+              <div className="mt-2">
+                <span className="inline-flex items-center rounded-full bg-terracotta/10 px-2.5 py-0.5 text-xs font-medium text-terracotta border border-terracotta/20">
+                  {item.badge}
+                </span>
+              </div>
             )}
             {item.doi && (
               <a
@@ -38,7 +45,7 @@ export default function PublicationRows({ items }) {
               rel="noopener noreferrer"
               className={buttonClasses({ variant: "ghost", size: "sm", className: "self-start shrink-0" })}
             >
-              View Paper
+              {item.linkLabel || "View Paper"}
               <ExternalLink className="ml-1.5 size-3.5" />
             </a>
           )}

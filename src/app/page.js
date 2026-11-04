@@ -162,7 +162,7 @@ export default function Home() {
               ))}
             </div>
             <Link href="/news" className={buttonClasses({ variant: "outline", className: "mt-5" })}>
-              Full bibliography <ArrowRight />
+              More news <ArrowRight />
             </Link>
           </div>
         </div>
