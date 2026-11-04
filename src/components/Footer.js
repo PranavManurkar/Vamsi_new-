@@ -104,6 +104,7 @@ export default function Footer() {
               <li><Link href="/people" className={linkClass}>People</Link></li>
               <li><Link href="/research" className={linkClass}>Research</Link></li>
               <li><Link href="/projects" className={linkClass}>Projects</Link></li>
+              <li><Link href="/news" className={linkClass}>More News</Link></li>
             </ul>
           </div>
 

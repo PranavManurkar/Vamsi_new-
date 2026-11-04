@@ -15,6 +15,7 @@ const NAV_ITEMS = [
   { label: "Publications", href: "/publications" },
   { label: "Teaching", href: "/teaching" },
   { label: "Gallery", href: "/gallery" },
+  { label: "More News", href: "/news" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -61,7 +62,7 @@ export default function Header() {
             />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-4 xl:gap-5 lg:flex">
             {navItems.map((item) => (
               <Link key={item.label} href={item.href} className={desktopLink(isActive(item.href))}>
                 {item.label}

@@ -130,6 +130,9 @@ export default function Home() {
                 </article>
               ))}
             </div>
+            <Link href="/news" className={buttonClasses({ variant: "outline", className: "mt-5" })}>
+              More news <ArrowRight />
+            </Link>
           </div>
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-terracotta">Selected publications</p>
@@ -158,7 +161,7 @@ export default function Home() {
                 </article>
               ))}
             </div>
-            <Link href="/publications" className={buttonClasses({ variant: "outline", className: "mt-5" })}>
+            <Link href="/news" className={buttonClasses({ variant: "outline", className: "mt-5" })}>
               Full bibliography <ArrowRight />
             </Link>
           </div>
