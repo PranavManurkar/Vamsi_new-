@@ -70,7 +70,7 @@ export const RESEARCH_THEMES = [
     shortTitle: "Defect Energetics & Deformation",
     tagline: "Atomic-scale defects and local chemical order govern dislocation processes and mechanical behaviour.",
     summary:
-      "Atomic-scale investigation of generalized stacking fault energies (GSFE), short-range order (SRO), vacancy defects, and crystal defect thermodynamics.",
+      "We investigate the atomic-scale mechanisms governing deformation and mechanical properties, with particular emphasis on antiphase boundaries, planar-fault energies, stacking faults, chemical ordering and dislocation-related processes. By quantifying defect energetics and their dependence on alloy chemistry and structure, we seek to establish mechanistic connections between atomic-scale interactions and macroscopic mechanical behaviour.",
     image: "/images/research/defect_energetics_mechanical_behaviour.png",
     overview:
       "The mechanical behaviour of metallic materials originates from the competition and synergy among atomic interactions, point defects, planar faults, and line defects. By computing generalized stacking fault energy (GSFE) surfaces and local chemical order, we establish direct physical links between atomic-scale defect energetics and macroscopic mechanical phenomena including yield anomalies, twinning, and strain hardening.",
