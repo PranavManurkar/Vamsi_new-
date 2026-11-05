@@ -3,105 +3,44 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { RESEARCH_THEMES } from "@/lib/researchData";
 import { buttonClasses } from "@/lib/ui";
-import { AlloyDesignDiagram, FaultDiagram, MethodsDiagram } from "@/components/site/ScientificDiagrams";
-
-
-const researchItems = [
-  {
-    title: "Computational Design of Advanced Alloys",
-    description:
-      "Design of complex alloy systems guided by physics-based modelling and thermodynamics:",
-    bullets: [
-      "Superalloys for high-temperature applications",
-      "Multi-principal element alloys (FCC, BCC, BCC+B2 systems)",
-      "Intermetallic systems",
-    ],
-    // redesign: placeholder image replaced by the design diagram (frontend imagery only).
-    diagram: AlloyDesignDiagram,
-  },
-  {
-    title: "Phase Stability & Defect Physics",
-    description:
-      "Understanding how composition and defects control microstructure and properties:",
-    bullets: [
-      "Phase stability and evolution in multi-component systems",
-      "Defect energetics (stacking faults, diffusion, interfaces)",
-      "Microstructure-property relationships",
-    ],
-    diagram: FaultDiagram,
-  },
-  {
-    title: "Multiscale Modelling & ICME",
-    description: "Bridging length scales for predictive materials design:",
-    bullets: [
-      "Linking atomistic mechanisms to macroscopic properties",
-      "Process-structure-property-performance relationships",
-      "ICME frameworks for alloy optimization",
-    ],
-    diagram: MethodsDiagram,
-  },
-];
 
 export default function Research() {
   return (
     <section id="research" className="px-5 pt-8 pb-16 md:px-8 md:pt-10 md:pb-20">
       <div className="mx-auto max-w-7xl">
-        {/* 4 Themes Heading */}
-        <div className="mb-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">Research Thrusts</p>
-          <h2 className="mt-1 text-2xl font-semibold text-primary md:text-4xl">Core Research Themes</h2>
-          <p className="mt-2 max-w-2xl text-muted-foreground">
-            Explore each thematic area for detailed methodologies, defect physics, multiscale simulations, and key outcomes.
-          </p>
-        </div>
-
-        {/* 4 Research Theme Cards */}
-        <div className="grid gap-8 md:grid-cols-2">
+        {/* 4 Research Theme Cards formatted exactly per Figma specifications */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {RESEARCH_THEMES.map((theme) => (
             <article
               key={theme.id}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:border-terracotta/50 hover:shadow-lg"
+              className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:border-terracotta/50 hover:shadow-md"
             >
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-secondary">
+              <div className="relative aspect-[16/11] w-full overflow-hidden bg-secondary">
                 <Image
                   src={theme.image}
                   alt={theme.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
-              <div className="flex flex-1 flex-col p-7">
-                <h3 className="text-2xl font-semibold leading-tight text-primary transition-colors group-hover:text-terracotta">
-                  {theme.title}
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="text-lg font-semibold leading-snug text-primary transition-colors group-hover:text-terracotta">
+                  {theme.shortTitle || theme.title}
                 </h3>
-                <p className="mt-2 text-sm font-medium italic text-terracotta">{theme.tagline}</p>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground">{theme.summary}</p>
-
-                <div className="mt-5 border-t border-border pt-4">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-primary/80">Key Topics</p>
-                  <ul className="mt-3 space-y-2.5">
-                    {theme.keyFeatures.slice(0, 3).map((feature) => (
-                      <li key={feature} className="flex gap-2.5 text-sm text-muted-foreground">
-                        <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-terracotta" aria-hidden="true" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-6 pt-2">
-                  <Link
-                    href={`/research/${theme.slug}`}
-                    className={buttonClasses({
-                      variant: "outline",
-                      className: "w-full justify-between group-hover:border-terracotta group-hover:bg-terracotta group-hover:text-white transition-all",
-                    })}
-                  >
-                    <span>Explore Theme &amp; Findings</span>
-                    <ArrowRight className="size-4" />
-                  </Link>
-                </div>
+                <p className="mt-3 flex-1 text-sm leading-6 text-muted-foreground line-clamp-4">
+                  {theme.summary}
+                </p>
+                <Link
+                  href={`/research/${theme.slug}`}
+                  className={buttonClasses({
+                    variant: "link",
+                    className: "mt-4 self-start px-0 text-terracotta",
+                  })}
+                >
+                  <span>Explore theme</span>
+                  <ArrowRight className="ml-1 size-4 transition-transform group-hover:translate-x-1" />
+                </Link>
               </div>
             </article>
           ))}
