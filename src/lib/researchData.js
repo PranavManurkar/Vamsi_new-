@@ -7,8 +7,10 @@ export const RESEARCH_THEMES = [
     title: "Advanced Structural Alloys & Superalloys",
     shortTitle: "Superalloys & Structural Alloys",
     tagline: "Unravelling precipitate shearing, planar faults, and high-temperature deformation in complex alloy systems.",
+    eyebrow: "RESEARCH THEME 01",
+    tags: ["Structural alloys", "Superalloys", "Mechanical properties"],
     summary:
-      "Investigation of coherent γ/γ' superalloy microstructures, planar-fault energetics (APB, SISF), dislocation shearing mechanisms, and high-temperature creep behaviour.",
+      "We investigate composition–microstructure–property relationships in advanced structural alloys, including BCC+B2 superalloys, Ni-based superalloys, FCC solid solutions, bond coats and fusible low-melting alloys. Our research combines phase stability, defect energetics, deformation mechanisms and thermodynamic modelling to guide alloy development for targeted properties and performance.",
     image: "/images/research/advanced_structural_alloys_superalloys.png",
     overview:
       "High-temperature structural alloys, particularly nickel- and cobalt-base superalloys, derive their exceptional mechanical performance from a coherent two-phase microstructure consisting of a disordered FCC matrix (γ) and ordered L1₂ intermetallic precipitates (γ'). Understanding the energetic barriers to dislocation motion across these ordered precipitates is central to designing alloys capable of operating under extreme stress and temperature conditions.",
@@ -69,6 +71,8 @@ export const RESEARCH_THEMES = [
     title: "Defect Energetics, Mechanical Behaviour & Deformation Mechanisms",
     shortTitle: "Defect Energetics & Deformation",
     tagline: "Atomic-scale defects and local chemical order govern dislocation processes and mechanical behaviour.",
+    eyebrow: "RESEARCH THEME 03",
+    tags: ["APBs", "Planar-fault energies", "Mechanical behaviour"],
     summary:
       "We investigate the atomic-scale mechanisms governing deformation and mechanical properties, with particular emphasis on antiphase boundaries, planar-fault energies, stacking faults, chemical ordering and dislocation-related processes. By quantifying defect energetics and their dependence on alloy chemistry and structure, we seek to establish mechanistic connections between atomic-scale interactions and macroscopic mechanical behaviour.",
     image: "/images/research/defect_energetics_mechanical_behaviour.png",
@@ -131,8 +135,10 @@ export const RESEARCH_THEMES = [
     title: "Computational Thermodynamics & Property-Driven Alloy Design",
     shortTitle: "Thermodynamics & Alloy Design",
     tagline: "Closed-loop computational alloy design: from multicomponent chemistry to optimal performance.",
+    eyebrow: "RESEARCH THEME 04",
+    tags: ["CALPHAD", "Property prediction", "Alloy optimisation"],
     summary:
-      "Closed-loop design connecting alloy composition, phase stability (CALPHAD/DFT), microstructure prediction, mechanical properties, and optimization.",
+      "We integrate computational thermodynamics, first-principles calculations, atomistic modelling and data-driven methods to understand phase stability and composition–structure–property relationships. Our goal is to identify promising alloy compositions by considering phase constitution, chemical ordering, defect energetics, mechanical properties and application-specific performance requirements.",
     image: "/images/research/computational_thermodynamics_alloy_design.png",
     overview:
       "Designing novel structural alloys requires navigating astronomical compositional spaces. We employ a closed-loop framework combining CALPHAD thermodynamics, ab initio calculations, and property models to rapidly screen, predict phase stability, control multi-phase microstructures (e.g. FCC + B2, BCC + B2), and identify optimal compositions for targeted operating environments.",
@@ -188,8 +194,10 @@ export const RESEARCH_THEMES = [
     title: "Physics-Guided Modelling, Machine Learning & Surrogate Models",
     shortTitle: "Physics-Guided ML & Surrogate Models",
     tagline: "Connecting DFT to macroscopic performance via machine learning interatomic potentials and surrogate models.",
+    eyebrow: "RESEARCH THEME 02",
+    tags: ["Physics-guided ML", "Surrogate models", "Atomistic modelling"],
     summary:
-      "Multiscale modelling across electronic, atomistic, phase, and microstructure scales using ML potentials, surrogate property models, and inverse alloy design.",
+      "We develop and apply computational and data-driven approaches to predict material energetics, properties and behaviour. Our methods include density functional theory, atomistic simulations, machine-learned interatomic potentials and surrogate models, with an emphasis on incorporating physical understanding into predictive models and alloy design.",
     image: "/images/research/physics_guided_modelling_ml.png",
     overview:
       "Bridging the vast gap between electronic-structure calculations (Angstroms) and macroscopic mechanical performance (centimeters) requires synergistic multiscale modelling. We develop and apply machine-learning interatomic potentials (MACE, MTP, MEAM), surrogate property regression models, and physics-guided screening algorithms to explore vast candidate alloy spaces with high fidelity and reduced computational cost.",
