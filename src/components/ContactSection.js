@@ -56,8 +56,11 @@ export default function ContactSection() {
             <h3 className="text-xl font-semibold text-primary">Contact Information</h3>
 
             <div className="mt-5 space-y-4">
-              {/* redesign-data: email — design: "kvvamsi@iiti.ac.in" (pages.tsx L302); repo here: "kvamsi@iiti.ac.in"; faculty/page.js uses "kvvamsi@…". Kept repo. */}
-              <InfoTile icon={Mail} label="Email">kvamsi@iiti.ac.in</InfoTile>
+              <InfoTile icon={Mail} label="Email">
+                <a href="mailto:kvvamsi@iiti.ac.in" className="hover:text-terracotta transition-colors">
+                  kvvamsi@iiti.ac.in
+                </a>
+              </InfoTile>
               <InfoTile icon={MapPin} label="Office Address">
                 FC-504, 4th Floor<br />
                 Learning Resource Centre<br />
